@@ -7,9 +7,15 @@
 - name: Pull homebrew install ruby script
   get_url:
     url: https://raw.githubusercontent.com/Homebrew/install/master/install
-    dest: /tmp/homebrew_install.rb
+    dest: "{{ homebrew_install_script_loc }}"
   when: not brew_location.stat.exists
 
 - name: install homebrew
-  shell: /usr/bin/ruby "/tmp/homebrew_install.rb" >> /dev/null
+  shell: /usr/bin/ruby "{{ homebrew_install_script_loc }}" >> /dev/null
   when: not brew_location.stat.exists
+
+- name: Remove homebrew install script
+  file:
+    state: absent
+    path: "{{ homebrew_install_script_loc }}"
+
