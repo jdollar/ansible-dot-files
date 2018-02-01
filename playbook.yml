@@ -4,4 +4,5 @@
     ansible_os_platform: "{{ os }}"
   roles:
     - homebrew
+    - git
     - neovim
