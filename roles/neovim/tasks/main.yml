@@ -1,0 +1,20 @@
+---
+- import_tasks: mac.yml
+  when: ansible_os_platform|lower == 'mac'
+
+- name: Create config directory
+  file: path=~/.config/nvim/bundle state=directory
+
+- name: Clone Vundler
+  git:
+    repo: 'https://github.com/VundleVim/Vundle.vim.git'
+    dest: ~/.config/nvim/bundle/Vundle.vim 
+
+- name: link init.vim file
+  file:
+    src: "{{ role_path }}/files/init.vim"
+    dest: ~/.config/nvim/init.vim
+    state: link
+
+#- name: install neovim plugins
+#  command: nvim +PluginInstall

@@ -1,8 +1,15 @@
 ---
+- name: Check if homebrew already installed
+  stat: 
+    path: /usr/local/bin/brew
+  register: brew_location
+
 - name: Pull homebrew install ruby script
   get_url:
     url: https://raw.githubusercontent.com/Homebrew/install/master/install
     dest: /tmp/homebrew_install.rb
+  when: not brew_location.stat.exists
 
 - name: install homebrew
   shell: /usr/bin/ruby "/tmp/homebrew_install.rb" >> /dev/null
+  when: not brew_location.stat.exists
