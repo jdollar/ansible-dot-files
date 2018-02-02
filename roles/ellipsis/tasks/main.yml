@@ -1,0 +1,22 @@
+---
+- name: Check if ellipsis already installed
+  stat:
+    path: ~/.ellipsis/bin/ellipsis
+  register: ellipsis_location
+
+- name: download ellipsis install script
+  get_url:
+    url: http://ellipsis.sh
+    dest: "{{ ellipsis_install_script_loc }}"
+  when: not ellipsis_location.stat.exists
+
+- name: update ellipsis install script to executable
+  file:
+    path: "{{ ellipsis_install_script_loc }}"
+    state: touch
+    mode: "a+x"
+  when: not ellipsis_location.stat.exists
+
+- name: install ellipsis
+  shell: "{{ ellipsis_install_script_loc }}"
+  when: not ellipsis_location.stat.exists
