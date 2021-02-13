@@ -5,5 +5,4 @@
   roles:
     - {role: 'homebrew', tags: 'homebrew'}
     - {role: 'git', tags: 'git'}
-    - {role: 'ellipsis', tags: 'ellipsis'}
     - {role: 'neovim', tags: 'neovim'}
