@@ -1,0 +1,8 @@
+---
+- name: install git with dnf
+  dnf:
+    name: git
+    state: latest
+  become_user: root
+  become: true
+  become_method: sudo

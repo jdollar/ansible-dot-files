@@ -1,3 +1,12 @@
 ---
 - import_tasks: mac.yml
   when: ansible_os_platform|lower == 'mac'
+
+- import_tasks: fedora.yml
+  when: ansible_facts['distribution'] == 'Fedora'
+
+- name: Symlink config
+  file:
+    src: "{{ role_path }}/files/gitconfig"
+    dest: "~/.gitconfig"
+    state: link
