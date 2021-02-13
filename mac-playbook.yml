@@ -1,0 +1,8 @@
+---
+- hosts: all
+  vars:
+    ansible_os_platform: "mac"
+  roles:
+    - {role: 'homebrew', tags: 'homebrew'}
+    - {role: 'git', tags: 'git'}
+    - {role: 'neovim', tags: 'neovim'}

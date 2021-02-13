@@ -9,9 +9,6 @@ pip3 install ansible
 To Run:
 
 ```shell
-ansible-playbook playbook.yml -e "os=mac" -i inventory.cfg
+ansible-playbook mac-playbook.yml -i inventory.cfg
+ansible-playbook linux-playbook.yml -i inventory.cfg
 ```
-
-Possible OS Values:
-* mac
-* linux
