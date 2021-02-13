@@ -2,8 +2,38 @@
 - import_tasks: mac.yml
   when: ansible_os_platform|lower == 'mac'
 
-- name: Create config directory
-  file: path=~/.config/nvim/bundle state=directory
+- import_tasks: fedora.yml
+  when: ansible_facts['distribution'] == 'Fedora'
 
-- name: install nvim dot files from ellipsis
-  command: ellipsis install "{{ ellipsis_nvim_dot_repo }}"
+- name: Create config directory
+  file:
+    path: "{{ nvim_config_dir }}/bundle"
+    state: directory
+
+- name: Create autoload directory
+  file:
+    path: "{{ nvim_config_dir }}/autoload"
+    state: directory
+
+- name: Install vim-plug
+  get_url:
+    url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    dest: "{{ nvim_config_dir }}/autoload/plug.vim"
+    force: yes
+
+- name: find
+  find:
+    paths: "{{ role_path + '/files' }}"
+    depth: 1
+    file_type: any
+  register: nvim_role_files
+
+- name: Symlink config
+  file:
+    src: "{{ item.path }}"
+    dest: "{{ nvim_config_dir }}/{{ item.path.split('/')[-1] }}"
+    state: link
+  loop: "{{ nvim_role_files.files }}"
+
+- name: Install plugins
+  shell: nvim "+silent! PlugInstall" +qall\!

@@ -1,2 +1,2 @@
 ---
-ellipsis_nvim_dot_repo: jdollar/nvim
+nvim_config_dir: ~/.config/nvim

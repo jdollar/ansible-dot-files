@@ -1,9 +1,17 @@
 ## Ansible Local Environment Setup
 
+Ansible installation:
+
+```shell
+pip3 install ansible
+```
+
 To Run:
 
-```
-ansible-playbook playbook.yml -e "os=mac" -i inventory.cfg -K
+```shell
+ansible-playbook playbook.yml -e "os=mac" -i inventory.cfg
 ```
 
-Possible OS Values: mac
+Possible OS Values:
+* mac
+* linux
