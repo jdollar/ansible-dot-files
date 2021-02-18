@@ -6,3 +6,4 @@
     - {role: 'homebrew', tags: 'homebrew'}
     - {role: 'git', tags: 'git'}
     - {role: 'neovim', tags: 'neovim'}
+    - {role: 'alacritty', tags: 'alacritty'}

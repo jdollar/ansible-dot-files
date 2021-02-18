@@ -1,0 +1,17 @@
+---
+- import_tasks: mac.yml
+  when: ansible_os_platform|lower == 'mac'
+
+- import_tasks: fedora.yml
+  when: ansible_facts['distribution'] == 'Fedora'
+
+- name: Create alacritty config directory
+  file:
+    path: "~/.config/alacritty"
+    state: directory
+
+- name: Symlink config
+  file:
+    src: "{{ role_path }}/files/alacritty.yml"
+    dest: "~/.config/alacritty/alacritty.yml"
+    state: link

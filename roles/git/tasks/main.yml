@@ -5,8 +5,10 @@
 - import_tasks: fedora.yml
   when: ansible_facts['distribution'] == 'Fedora'
 
-- name: Symlink config
-  file:
-    src: "{{ role_path }}/files/gitconfig"
-    dest: "~/.gitconfig"
-    state: link
+# Based on current gitconfig I'll need to template in home directories here
+# commenting out until I fix this
+# - name: Symlink config
+#   file:
+#     src: "{{ role_path }}/files/gitconfig"
+#     dest: "~/.gitconfig"
+#     state: link
