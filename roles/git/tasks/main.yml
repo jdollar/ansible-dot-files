@@ -5,10 +5,18 @@
 - import_tasks: fedora.yml
   when: ansible_facts['distribution'] == 'Fedora'
 
-# Based on current gitconfig I'll need to template in home directories here
-# commenting out until I fix this
-# - name: Symlink config
-#   file:
-#     src: "{{ role_path }}/files/gitconfig"
-#     dest: "~/.gitconfig"
-#     state: link
+- name: Get HOME directory
+  set_fact:
+    home_dir: "{{ lookup('env', 'HOME') }}"
+
+- name: Create gitconfig
+  ansible.builtin.template:
+    src: "{{ role_path }}/files/gitconfig.jinja"
+    dest: "{{ role_path}}/files/gitconfig.generated"
+
+- name: Symlink config
+  file:
+    src: "{{ role_path }}/files/gitconfig.generated"
+    dest: "~/.gitconfig"
+    state: link
+    force: yes

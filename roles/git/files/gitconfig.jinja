@@ -1,0 +1,20 @@
+[user]
+        name = jdollar
+        email = dollarhidejoel@gmail.com
+        signedkey = 3699D0F6BD0B1993
+        signingkey = 3699D0F6BD0B1993
+[core]
+        excludesfile = {{ home_dir }}/.gitignore_global
+        editor = nvim
+[commit]
+        template = {{ home_dir }}/.stCommitMsg
+        gpgsign = true
+[gpg]
+        program = /usr/local/bin/gpg
+[merge]
+        conflictstyle = diff3
+[filter "lfs"]
+        clean = git-lfs clean -- %f
+        smudge = git-lfs smudge -- %f
+        process = git-lfs filter-process
+        required = true
