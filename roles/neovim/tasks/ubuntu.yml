@@ -1,0 +1,8 @@
+---
+- name: install neovim with apt
+  apt:
+    name: neovim
+    state: latest
+  become_user: root
+  become: true
+  become_method: sudo

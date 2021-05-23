@@ -1,0 +1,8 @@
+---
+- name: install git with apt
+  apt:
+    name: git
+    state: latest
+  become_user: root
+  become: true
+  become_method: sudo

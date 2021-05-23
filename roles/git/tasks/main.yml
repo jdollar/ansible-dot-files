@@ -5,6 +5,9 @@
 - import_tasks: fedora.yml
   when: ansible_facts['distribution'] == 'Fedora'
 
+- import_tasks: ubuntu.yml
+  when: ansible_facts['distribution'] == 'Ubuntu'
+
 - name: Get HOME directory
   set_fact:
     home_dir: "{{ lookup('env', 'HOME') }}"
