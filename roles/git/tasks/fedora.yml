@@ -6,3 +6,11 @@
   become_user: root
   become: true
   become_method: sudo
+
+- name: Symlink gpg key config
+  file:
+    src: "{{ role_path }}/files/gitconfig.personal"
+    dest: "~/.gitconfig.gpgconfig"
+    state: link
+    force: yes
+

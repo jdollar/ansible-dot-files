@@ -2,3 +2,11 @@
 - name: install git
   homebrew:
     name: git
+
+- name: Symlink gpg key config
+  file:
+    src: "{{ role_path }}/files/gitconfig.work"
+    dest: "~/.gitconfig.gpgconfig"
+    state: link
+    force: yes
+

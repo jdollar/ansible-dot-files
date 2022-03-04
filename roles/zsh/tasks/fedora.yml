@@ -1,7 +1,7 @@
 ---
-- name: install neovim with dnf
+- name: install zsh with dnf
   dnf:
-    name: neovim
+    name: zsh
     state: latest
   become_user: root
   become: true

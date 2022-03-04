@@ -1,8 +1,5 @@
-[user]
-        name = jdollar
-        email = dollarhidejoel@gmail.com
-        signedkey = 3699D0F6BD0B1993
-        signingkey = 3699D0F6BD0B1993
+[include]
+        path = .gitconfig.gpgconfig
 [core]
         excludesfile = {{ home_dir }}/.gitignore_global
         editor = nvim
@@ -10,7 +7,7 @@
         template = {{ home_dir }}/.stCommitMsg
         gpgsign = true
 [gpg]
-        program = /usr/local/bin/gpg
+        program = {{ gpg_bin }}
 [merge]
         conflictstyle = diff3
 [filter "lfs"]

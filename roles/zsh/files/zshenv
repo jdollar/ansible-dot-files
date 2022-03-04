@@ -1,0 +1,14 @@
+export PATH=$HOME/.ellipsis/bin:$PATH
+export PATH=$HOME/bin/exercism:$PATH
+export PATH=$HOME/tools/flutter/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.rvm/bin:$PATH
+export PATH=/usr/local/go/bin:$PATH
+export PATH=$HOME/.cargo/bin:$PATH
+
+ 
+#export XDG_CONFIG_HOME=$HOME/.config
+#export XDG_DATA_DIRS=$HOME/.local/share/icons:$XDG_DATA_DIRS
+export JAVA_HOME=/lib/jvm/java-1.8.0-openjdk
+export EDITOR=$(which nvim)
+

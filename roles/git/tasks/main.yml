@@ -11,6 +11,14 @@
 - name: Get HOME directory
   set_fact:
     home_dir: "{{ lookup('env', 'HOME') }}"
+      
+- name: determine gpg install location
+  ansible.builtin.shell: which gpg
+  register: which_gpg_command
+
+- name: register gpg bin fact
+  set_fact:
+    gpg_bin: "{{ which_gpg_command.stdout }}"
 
 - name: Create gitconfig
   ansible.builtin.template:

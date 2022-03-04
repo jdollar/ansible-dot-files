@@ -3,6 +3,8 @@
   vars:
     ansible_os_platform: "linux"
   roles:
+    - {role: 'zsh', tags: 'zsh'}
     - {role: 'git', tags: 'git'}
     - {role: 'neovim', tags: 'neovim'}
     - {role: 'alacritty', tags: 'alacritty'}
+    - {role: 'asdf', tags: 'asdf'}

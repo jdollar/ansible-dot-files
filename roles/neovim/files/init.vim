@@ -19,13 +19,12 @@ set autoindent
 syntax enable
 call plug#begin('$HOME/.config/nvim/bundle')
 
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'bling/vim-airline'
 Plug 'jeetsukumaran/vim-filebeagle'
 Plug 'flazz/vim-colorschemes'
-Plug 'Shougo/deoplete.nvim'
 Plug 'w0rp/ale'
 Plug 'rrrene/credo'
-Plug 'sheerun/vim-polyglot'
 Plug 'airblade/vim-gitgutter'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'scrooloose/nerdtree'
@@ -34,5 +33,8 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 call plug#end()
+
+" Disabling ale lsp so coc can do it
+let g:ale_disable_lsp = 1
 
 map <C-b> :NERDTreeToggle<CR>

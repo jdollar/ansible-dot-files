@@ -1,0 +1,4 @@
+---
+- name: install zsh with brew
+  homebrew:
+    name: zsh

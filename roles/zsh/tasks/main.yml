@@ -1,0 +1,53 @@
+---
+- import_tasks: mac.yml
+  when: ansible_os_platform|lower == 'mac'
+
+- import_tasks: fedora.yml
+  when: ansible_facts['distribution'] == 'Fedora'
+
+- name: download and install oh-my-zsh
+  ansible.builtin.shell: sh -c $(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)
+  args:
+    chdir: ~
+
+- name: Create config directory
+  file:
+    path: "{{ zsh_config_dir }}"
+    state: directory
+
+- name: find role files
+  find:
+    paths: "{{ role_path + '/files' }}"
+    depth: 1
+    file_type: any
+    excludes:
+      - zshrc
+      - zprofile
+      - zlogin
+  register: zsh_role_files
+
+- name: find role home files
+  find:
+    paths: "{{ role_path + '/files' }}"
+    patterns: 
+      - zshrc
+      - zprofile
+      - zlogin
+      - zshenv
+    depth: 1
+    file_type: file
+  register: zsh_role_home_files
+
+- name: Symlink config
+  file:
+    src: "{{ item.path }}"
+    dest: "{{ zsh_config_dir }}/{{ item.path.split('/')[-1] }}"
+    state: link
+  loop: "{{ zsh_role_files.files }}"
+
+- name: Symlink home files
+  file:
+    src: "{{ item.path }}"
+    dest: "~/.{{ item.path.split('/')[-1] }}"
+    state: link
+  loop: "{{ zsh_role_home_files.files }}"

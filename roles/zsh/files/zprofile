@@ -1,0 +1,2 @@
+for file in ~/.config/zsh/profile.d/**/*(.); do source $file; done
+

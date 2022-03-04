@@ -1,0 +1,6 @@
+# Set touchpad to have tap clicking enabled
+#xinput set-prop "Elan Touchpad" "libinput Tapping Enabled" 1
+
+# Set touchpad to be a little faster
+#libinput set-prop "Elan Touchpad" "libinput Accel Speed" .25
+

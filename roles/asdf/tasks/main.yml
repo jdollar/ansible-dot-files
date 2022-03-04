@@ -1,0 +1,19 @@
+---
+- name: Clone asdf
+  ansible.builtin.git:
+    repo: https://github.com/asdf-vm/asdf.git
+    dest: ~/.asdf
+    single_branch: yes
+    version: v0.9.0
+
+- name: create zshrc.d directory if it doesn't exist
+  ansible.builtin.file:
+    path: ~/.config/zsh/zshrc.d
+    state: directory
+
+- name: generate plugin file
+  ansible.builtin.template:
+    src: "{{ role_path }}/files/asdf.j2"
+    dest: "{{ zshrc_dir }}/asdf.zsh"
+    mode: u=rx
+
