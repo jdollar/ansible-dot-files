@@ -1,0 +1,13 @@
+---
+- name: install go plugin deps
+  dnf:
+    name: "{{ item }}"
+    state: latest
+  become_user: root
+  become: true
+  become_method: sudo
+  loop:
+    - coreutils
+    - curl
+
+

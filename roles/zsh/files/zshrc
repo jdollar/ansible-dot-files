@@ -102,20 +102,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-#tmux
-if which tmux > /dev/null 2>&1; then
-  test -z "$TMUX" && (tmux attach || tmux new-session)
-fi
-
-#if [ -s ~/.Xmodmap ]; then
-#    xmodmap ~/.Xmodmap
-#fi
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 for file in ~/.config/zsh/alias.d/**/*(Nx); do source $file; done
 for file in ~/.config/zsh/zshrc.d/**/*(Nx); do source $file; done
 for file in ~/.config/zsh/env.d/**/*(Nx); do source $file; done
-
-[[ -s "/home/jdollar/.gvm/scripts/gvm" ]] && source "/home/jdollar/.gvm/scripts/gvm"
 

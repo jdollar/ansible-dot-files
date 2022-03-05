@@ -1,0 +1,4 @@
+
+# allows use of .nvmrc
+legacy_file_version = yes
+

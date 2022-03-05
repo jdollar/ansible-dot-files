@@ -6,7 +6,9 @@
     - {role: 'homebrew', tags: 'homebrew'}
     - {role: 'zsh', tags: 'zsh'}
     - {role: 'git', tags: 'git'}
+    - {role: 'fzf', tags: 'fzf'}
     - {role: 'neovim', tags: 'neovim'}
     - {role: 'alacritty', tags: 'alacritty'}
     - {role: 'asdf', tags: 'asdf'}
     - {role: 'tmux', tags: 'tmux'}
+

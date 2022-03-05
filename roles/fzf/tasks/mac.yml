@@ -1,0 +1,5 @@
+---
+- name: install fzf with brew
+  homebrew:
+    name: fzf
+

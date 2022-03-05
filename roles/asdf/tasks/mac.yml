@@ -1,5 +1,4 @@
 ---
 - name: install neovim with brew
   homebrew:
-    name: neovim
-
+    name: coreutils
