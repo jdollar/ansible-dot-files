@@ -22,12 +22,6 @@
 
 - name: Create gitconfig
   ansible.builtin.template:
-    src: "{{ role_path }}/files/gitconfig.jinja"
-    dest: "{{ role_path}}/files/gitconfig.generated"
-
-- name: Symlink config
-  file:
-    src: "{{ role_path }}/files/gitconfig.generated"
+    src: "{{ role_path }}/files/gitconfig.j2"
     dest: "~/.gitconfig"
-    state: link
-    force: yes
+
