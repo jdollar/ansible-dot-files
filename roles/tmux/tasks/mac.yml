@@ -1,0 +1,9 @@
+---
+- name: install tmux with brew
+  homebrew_cask:
+    name: tmux
+
+- name: config ansible for tmux install
+  set_fact:
+    tmux_platform_config: tmux.linux.config
+

@@ -9,3 +9,4 @@
     - {role: 'neovim', tags: 'neovim'}
     - {role: 'alacritty', tags: 'alacritty'}
     - {role: 'asdf', tags: 'asdf'}
+    - {role: 'tmux', tags: 'tmux'}

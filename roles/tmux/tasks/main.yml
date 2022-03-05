@@ -1,0 +1,49 @@
+---
+- name: create config directory
+  file:
+    path: "{{ tmux_config_dir }}"
+    state: directory
+
+- import_tasks: mac.yml
+  when: ansible_os_platform|lower == 'mac'
+
+- import_tasks: fedora.yml
+  when: ansible_facts['distribution'] == 'Fedora'
+
+- name: Create .tmux.config
+  ansible.builtin.template:
+    src: "{{ role_path }}/files/tmux.config.j2"
+    dest: "~/.tmux.config"
+
+- name: find tmux config files
+  find:
+    paths: "{{ role_path + '/files' }}"
+    patterns: 
+      - "{{ tmux_platform_config }}"
+      - "tmux.common.config"
+    depth: 1
+    file_type: file
+  register: tmux_config_files
+
+- name: Symlink home files
+  file:
+    src: "{{ item.path }}"
+    dest: "{{ tmux_config_dir}}/.{{ item.path.split('/')[-1] }}"
+    state: link
+  loop: "{{ tmux_config_files.files }}"
+
+- name: find tmux profile scripts
+  find:
+    paths: "{{ role_path + '/files' }}"
+    patterns: 
+      - "tmux.zsh"
+    depth: 1
+    file_type: file
+  register: tmux_profile_scripts
+
+- name: Symlink profile scripts
+  file:
+    src: "{{ item.path }}"
+    dest: "~/.config/zsh/profile.d/.{{ item.path.split('/')[-1] }}"
+    state: link
+  loop: "{{ tmux_profile_scripts.files }}"
