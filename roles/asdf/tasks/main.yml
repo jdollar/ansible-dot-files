@@ -28,6 +28,7 @@
     paths: "{{ role_path + '/files' }}"
     patterns:
       - asdfrc
+      - tool-versions
     depth: 1
     file_type: any
   register: nvim_role_files
@@ -49,4 +50,6 @@
   register: result
   failed_when: "'Plugin named golang already added' not in result.stderr"
 
+- name: install globally defined tool versions
+  shell: asdf install
 
