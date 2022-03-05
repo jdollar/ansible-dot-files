@@ -1,4 +1,12 @@
 ---
-- name: install neovim with brew
+- name: install go plugin deps with brew
   homebrew:
     name: coreutils
+
+- name: install ruby plugin deps with brew
+  homebrew:
+    name: coreutils
+  loop:
+    - openssl@1.1
+    - readline
+

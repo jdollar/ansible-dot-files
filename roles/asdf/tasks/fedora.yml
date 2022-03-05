@@ -10,4 +10,24 @@
     - coreutils
     - curl
 
+- name: install ruby plugin deps
+  dnf:
+    name: "{{ item }}"
+    state: latest
+  become_user: root
+  become: true
+  become_method: sudo
+  loop:
+    - gcc
+    - make
+    - bzip2
+    - openssl-devel
+    - libyaml-devel
+    - libffi-devel
+    - readline-devel
+    - zlib-devel
+    - gdbm-devel
+    - ncurses-devel
+
+
 
