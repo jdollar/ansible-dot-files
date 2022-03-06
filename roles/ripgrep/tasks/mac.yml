@@ -1,0 +1,4 @@
+---
+- name: install ripgrep with brew
+  homebrew:
+    name: ripgrep

@@ -1,0 +1,9 @@
+---
+- name: install ripgrep with dnf
+  dnf:
+    name: ripgrep
+    state: latest
+  become_user: root
+  become: true
+  become_method: sudo
+

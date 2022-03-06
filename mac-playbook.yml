@@ -7,6 +7,7 @@
     - {role: 'zsh', tags: 'zsh'}
     - {role: 'git', tags: 'git'}
     - {role: 'fzf', tags: 'fzf'}
+    - {role: 'ripgrep', tags: 'ripgrep'}
     - {role: 'neovim', tags: 'neovim'}
     - {role: 'alacritty', tags: 'alacritty'}
     - {role: 'asdf', tags: 'asdf'}

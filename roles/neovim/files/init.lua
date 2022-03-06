@@ -2,6 +2,15 @@ HOME_DIR = os.getenv('HOME')
 
 vim.opt.filetype = 'off'
 
+vim.api.nvim_set_keymap(
+  'n',
+  '<Space>',
+  '<Nop>',
+  { noremap = false }
+)
+
+vim.g.mapleader = ' '
+
 vim.opt.compatible = false
 
 -- Set hybrid line numbering
@@ -35,16 +44,10 @@ Plug('airblade/vim-gitgutter')
 Plug('editorconfig/editorconfig-vim')
 Plug('scrooloose/nerdtree')
 Plug('junegunn/fzf', { dir = HOME_DIR .. '/.fzf', ['do'] = './install --all' })
+Plug('junegunn/fzf.vim')
 
 vim.call('plug#end')
 
 -- Disabling ale lsp so coc can do it
 vim.g.ale_disable_lsp = 1
-
-vim.api.nvim_set_keymap(
-  'n',
-  '<C-b>',
-  ':NERDTreeToggle<CR>',
-  { noremap = false }
-)
 
