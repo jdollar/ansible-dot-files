@@ -15,16 +15,16 @@
     path: "{{ zsh_config_dir }}"
     state: directory
 
-- name: find role files
-  find:
-    paths: "{{ role_path + '/files' }}"
-    depth: 1
-    file_type: any
-    excludes:
-      - zshrc
-      - zprofile
-      - zlogin
-  register: zsh_role_files
+- name: create config folders
+  file:
+    path: "{{ zsh_config_dir }}/{{ item }}"
+    state: directory
+  loop:
+    - env.d
+    - alias.d
+    - profile.d
+    - plugins.d
+    - zshrc.d
 
 - name: find role home files
   find:
@@ -37,13 +37,6 @@
     depth: 1
     file_type: file
   register: zsh_role_home_files
-
-- name: Symlink config
-  file:
-    src: "{{ item.path }}"
-    dest: "{{ zsh_config_dir }}/{{ item.path.split('/')[-1] }}"
-    state: link
-  loop: "{{ zsh_role_files.files }}"
 
 - name: Symlink home files
   file:

@@ -1,0 +1,9 @@
+---
+- name: "install {{ packages }} with dnf"
+  dnf:
+    name: "{{ packages }}"
+    state: latest
+  become_user: root
+  become: true
+  become_method: sudo
+

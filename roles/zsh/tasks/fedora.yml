@@ -1,9 +1,7 @@
 ---
-- name: install zsh with dnf
-  dnf:
-    name: zsh
-    state: latest
-  become_user: root
-  become: true
-  become_method: sudo
+- name: install ruby plugin deps
+  include_tasks:
+    file: 'roles/common/tasks/dnf-install.yml'
+  vars:
+    packages: zsh
 

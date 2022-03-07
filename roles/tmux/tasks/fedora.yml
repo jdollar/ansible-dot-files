@@ -1,11 +1,9 @@
 ---
-- name: install tmux with dnf
-  dnf:
-    name: tmux
-    state: latest
-  become_user: root
-  become: true
-  become_method: sudo
+- name: install tmux
+  include_tasks:
+    file: 'roles/common/tasks/dnf-install.yml'
+  vars:
+    packages: tmux
 
 - name: config ansible for tmux install
   set_fact:
