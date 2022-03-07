@@ -1,0 +1,9 @@
+---
+- name: install bat with dnf
+  dnf:
+    name: bat
+    state: latest
+  become_user: root
+  become: true
+  become_method: sudo
+

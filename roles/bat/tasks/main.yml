@@ -1,0 +1,20 @@
+---
+- import_tasks: mac.yml
+  when: ansible_os_platform|lower == 'mac'
+
+- import_tasks: fedora.yml
+  when: ansible_facts['distribution'] == 'Fedora'
+
+- name: find bat alias scripts
+  find:
+    paths: "{{ role_path + '/files/alias.d' }}"
+    depth: 1
+    file_type: any
+  register: bat_alias_scripts
+
+- name: Symlink env scripts
+  file:
+    src: "{{ item.path }}"
+    dest: "~/.config/zsh/alias.d/{{ item.path.split('/')[-1] }}"
+    state: link
+  loop: "{{ bat_alias_scripts.files }}"

@@ -12,4 +12,5 @@
     - {role: 'alacritty', tags: 'alacritty'}
     - {role: 'asdf', tags: 'asdf'}
     - {role: 'tmux', tags: 'tmux'}
+    - {role: 'bat', tags: 'bat'}
 
