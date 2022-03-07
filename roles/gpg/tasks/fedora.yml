@@ -1,0 +1,9 @@
+---
+- name: install gpg with dnf
+  dnf:
+    name: gpg
+    state: latest
+  become_user: root
+  become: true
+  become_method: sudo
+

@@ -1,0 +1,5 @@
+---
+- name: install gnupg
+  homebrew:
+    name: gnupg
+

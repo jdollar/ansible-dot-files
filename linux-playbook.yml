@@ -4,6 +4,7 @@
     ansible_os_platform: "linux"
   roles:
     - {role: 'zsh', tags: 'zsh'}
+    - {role: 'gpg', tags: 'gpg'}
     - {role: 'git', tags: 'git'}
     - {role: 'fzf', tags: 'fzf'}
     - {role: 'ripgrep', tags: 'ripgrep'}

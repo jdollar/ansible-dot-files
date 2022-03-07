@@ -15,3 +15,13 @@
     src: "{{ role_path }}/files/alacritty.yml"
     dest: "~/.config/alacritty/alacritty.yml"
     state: link
+
+- name: download term info
+  shell: curl -sSL https://raw.githubusercontent.com/alacritty/alacritty/master/extra/alacritty.info -o /tmp/alacritty.terminfo
+  args:
+    executable: /bin/zsh
+
+- name: install alacritty term info
+  shell: tic -x /tmp/alacritty.terminfo
+  args:
+    executable: /bin/zsh

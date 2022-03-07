@@ -5,6 +5,7 @@
   roles:
     - {role: 'homebrew', tags: 'homebrew'}
     - {role: 'zsh', tags: 'zsh'}
+    - {role: 'gpg', tags: 'gpg'}
     - {role: 'git', tags: 'git'}
     - {role: 'fzf', tags: 'fzf'}
     - {role: 'ripgrep', tags: 'ripgrep'}
