@@ -13,4 +13,5 @@
     - {role: 'asdf', tags: 'asdf'}
     - {role: 'tmux', tags: 'tmux'}
     - {role: 'bat', tags: 'bat'}
+    - {role: 'exa', tags: 'exa'}
 

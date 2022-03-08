@@ -5,6 +5,9 @@
 - import_tasks: fedora.yml
   when: ansible_facts['distribution'] == 'Fedora'
 
+- include_tasks:
+    file: roles/common/tasks/zsh-file-symlink.yml
+
 - name: create config directory
   file:
     path: "{{ tmux_config_dir }}"
@@ -32,18 +35,3 @@
     state: link
   loop: "{{ tmux_config_files.files }}"
 
-- name: find tmux profile scripts
-  find:
-    paths: "{{ role_path + '/files' }}"
-    patterns: 
-      - "tmux.zsh"
-    depth: 1
-    file_type: file
-  register: tmux_profile_scripts
-
-- name: Symlink profile scripts
-  file:
-    src: "{{ item.path }}"
-    dest: "~/.config/zsh/profile.d/.{{ item.path.split('/')[-1] }}"
-    state: link
-  loop: "{{ tmux_profile_scripts.files }}"

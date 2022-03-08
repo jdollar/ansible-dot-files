@@ -1,0 +1,6 @@
+---
+- name: install exa
+  include_tasks:
+    file: 'roles/common/tasks/dnf-install.yml'
+  vars:
+    packages: exa

@@ -1,2 +1,2 @@
-for file in ~/.config/zsh/profile.d/**/*(.); do source $file; done
+for file in ~/.config/zsh/profile.d/**/*(Nx); do source $file; done
 

@@ -5,16 +5,5 @@
 - import_tasks: fedora.yml
   when: ansible_facts['distribution'] == 'Fedora'
 
-- name: find gpg env scripts
-  find:
-    paths: "{{ role_path + '/files/env.d' }}"
-    depth: 1
-    file_type: any
-  register: gpg_env_scripts
-
-- name: Symlink env scripts
-  file:
-    src: "{{ item.path }}"
-    dest: "~/.config/zsh/env.d/{{ item.path.split('/')[-1] }}"
-    state: link
-  loop: "{{ gpg_env_scripts.files }}"
+- include_tasks:
+    file: roles/common/tasks/zsh-file-symlink.yml
