@@ -1,6 +1,7 @@
 HOME_DIR = os.getenv('HOME')
 
 vim.opt.filetype = 'off'
+vim.opt.mouse = 'a'
 
 vim.api.nvim_set_keymap(
   'n',
