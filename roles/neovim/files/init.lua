@@ -49,8 +49,8 @@ Plug('junegunn/fzf.vim')
 
 vim.call('plug#end')
 
--- Disabling ale lsp so coc can do it
-vim.g.ale_disable_lsp = 1
+-- Require coc lua module
+require('coc')
 
 -- Stops Rg from returning results based on file name matches
 vim.cmd([[
