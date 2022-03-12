@@ -2,7 +2,7 @@
 vim.api.nvim_set_keymap(
   'n',
   '<C-b>',
-  ':NERDTreeToggle<CR>',
+  ':ToggleNERDTreeFind<CR>',
   { noremap = false }
 )
 

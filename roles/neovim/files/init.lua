@@ -70,4 +70,5 @@ require('coc-conf')
 require('fzf-conf')
 require('nvim-treesitter-conf')
 require('vim-devicons-conf')
+require('nerdtree-conf')
 
