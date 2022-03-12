@@ -1,0 +1,33 @@
+---
+- name: make Hack Nerd Font directory 
+  file:
+    path: ~/.local/share/fonts/nerd-fonts/Hack
+    state: directory
+
+- name: make fontconfig directory
+  file:
+    path: ~/.config/fontconfig/conf.d
+    state: directory
+
+- name: Download Hack Nerd Font
+  get_url:
+    url: "{{ item.url }}"
+    dest: "~/.local/share/fonts/nerd-fonts/Hack/{{ item.fileName }}"
+  loop:
+    - fileName: 'hackRegularNerdFontCompleteMono.ttf'
+      url: 'https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Hack/Regular/complete/Hack%20Regular%20Nerd%20Font%20Complete%20Mono.ttf?raw=true'
+    - fileName: 'hackItalicNerdFontCompleteMono.ttf'
+      url: 'https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Hack/Italic/complete/Hack%20Italic%20Nerd%20Font%20Complete%20Mono.ttf?raw=true'
+    - fileName: 'hackBoldItalicNerdFontCompleteMono.ttf'
+      url: 'https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Hack/BoldItalic/complete/Hack%20Bold%20Italic%20Nerd%20Font%20Complete%20Mono.ttf?raw=true'
+    - fileName: 'hackBoldNerdFontCompleteMono.ttf'
+      url: 'https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Hack/Bold/complete/Hack%20Bold%20Nerd%20Font%20Complete%20Mono.ttf?raw=true'
+
+- name: Download Nerd Fonts config
+  get_url:
+    url: https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/10-nerd-font-symbols.conf
+    dest: ~/.config/fontconfig/conf.d/10-nerd-font-symbols.conf
+
+- name: update fc cache
+  command: fc-cache -rv
+
