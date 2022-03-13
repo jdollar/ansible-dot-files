@@ -21,8 +21,6 @@ return require('packer').startup(function(use)
     'flazz/vim-colorschemes',
     config = function() require('vim-colorschemes-conf').setup() end
   }
-  use 'w0rp/ale'
-  use 'rrrene/credo'
 
   -- cool git changes in gutter on left
   use 'airblade/vim-gitgutter'
@@ -41,12 +39,14 @@ return require('packer').startup(function(use)
     config = function() require('vim-devicons-conf').setup() end
   }
 
+  -- language server support
+  use {
+    'williamboman/nvim-lsp-installer',
+    config = function() require('nvim-lsp-installer-conf').setup() end,
+    requires = {{'neovim/nvim-lspconfig'}}
+  }
+
   -- fuzzy file search/finder
-  --use {
-  --  'junegunn/fzf',
-  --  run = './install --all'
-  --  { dir = HOME_DIR .. '/.fzf', ['do'] = './install --all' }
-  --}
   use {
     'junegunn/fzf',
     run = function() vim.fn['fzf#install']() end,

@@ -1,2 +1,0 @@
-map <Space>f <Nop>
-
