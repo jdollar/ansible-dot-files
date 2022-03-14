@@ -12,7 +12,7 @@ end
 --  augroup end
 --]])
 
-return require('packer').startup(function(use)
+require('packer').startup(function(use)
   use { "wbthomason/packer.nvim" }
 
   use 'bling/vim-airline'
@@ -40,10 +40,31 @@ return require('packer').startup(function(use)
   }
 
   -- language server support
+  use 'hrsh7th/cmp-nvim-lsp'
   use {
     'williamboman/nvim-lsp-installer',
-    config = function() require('nvim-lsp-installer-conf').setup() end,
-    requires = {{'neovim/nvim-lspconfig'}}
+    config = function()
+      require('nvim-lsp-installer-conf').setup()
+    end,
+    requires = {
+      'neovim/nvim-lspconfig',
+      'hrsh7th/cmp-nvim-lsp'
+    }
+  }
+
+  use {
+    'hrsh7th/nvim-cmp',
+    config = function()
+      require('nvim-cmp-conf').setup()
+    end,
+    requires = {
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-cmdline',
+      'hrsh7th/nvim-cmp',
+      'hrsh7th/cmp-vsnip',
+      'hrsh7th/vim-vsnip'
+    }
   }
 
   -- fuzzy file search/finder
@@ -68,4 +89,3 @@ return require('packer').startup(function(use)
     require('packer').sync()
   end
 end)
-
