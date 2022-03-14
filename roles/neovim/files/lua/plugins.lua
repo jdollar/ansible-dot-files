@@ -75,6 +75,11 @@ require('packer').startup(function(use)
   }
   use 'junegunn/fzf.vim'
 
+  -- auto close brackets + parenthesis
+  use {
+    'windwp/nvim-autopairs',
+    config = function() require('nvim-autopairs-conf').setup() end
+  }
 
   -- Abstraction layer for nvim syntax highlighting
   use {
