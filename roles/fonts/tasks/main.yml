@@ -1,7 +1,17 @@
 ---
+- name: set fonts directory mac
+  ansible.builtin.set_fact:
+    fonts_dir: ~/Library/Fonts
+  when: ansible_os_platform|lower == 'mac'
+
+- name: set fonts directory linux
+  ansible.builtin.set_fact:
+    fonts_dir: ~/.local/share/fonts
+  when: ansible_os_platform|lower != 'mac'
+
 - name: make Hack Nerd Font directory 
   file:
-    path: ~/.local/share/fonts/nerd-fonts/Hack
+    path: "{{ fonts_dir }}/nerd-fonts/Hack"
     state: directory
 
 - name: make fontconfig directory
@@ -12,7 +22,7 @@
 - name: Download Hack Nerd Font
   get_url:
     url: "{{ item.url }}"
-    dest: "~/.local/share/fonts/nerd-fonts/Hack/{{ item.fileName }}"
+    dest: "{{ fonts_dir }}/nerd-fonts/Hack/{{ item.fileName }}"
   loop:
     - fileName: 'hackRegularNerdFontCompleteMono.ttf'
       url: 'https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Hack/Regular/complete/Hack%20Regular%20Nerd%20Font%20Complete%20Mono.ttf?raw=true'
