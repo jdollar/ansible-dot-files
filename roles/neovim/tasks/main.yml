@@ -31,6 +31,9 @@
     state: link
   loop: "{{ nvim_role_files.files }}"
 
+- name: clean old plugins
+  shell: nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerClean'
+
 - name: Install plugins
   shell: nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 

@@ -9,13 +9,13 @@ require('packer').startup(function(use)
 
   use 'bling/vim-airline'
   use 'jeetsukumaran/vim-filebeagle'
-
+  
   -- colorscheme
   use {
     'RRethy/nvim-base16',
     config = function() require('zenbones-conf').setup() end
   }
-
+  
   -- git functionality
   use {
     'lewis6991/gitsigns.nvim',
@@ -24,10 +24,10 @@ require('packer').startup(function(use)
     },
     config = function() require('gitsigns').setup() end
   }
-
+  
   -- enables use of .editorconfig files
   use 'editorconfig/editorconfig-vim'
-
+  
   -- file explorer
   use {
     'scrooloose/nerdtree',
@@ -38,7 +38,7 @@ require('packer').startup(function(use)
     'ryanoasis/vim-devicons',
     config = function() require('vim-devicons-conf').setup() end
   }
-
+  
   -- language server support
   use 'hrsh7th/cmp-nvim-lsp'
   use {
@@ -51,7 +51,7 @@ require('packer').startup(function(use)
       'hrsh7th/cmp-nvim-lsp'
     }
   }
-
+  
   use {
     'hrsh7th/nvim-cmp',
     config = function()
@@ -101,7 +101,7 @@ require('packer').startup(function(use)
   -- Indent guides
   use {
     'lukas-reineke/indent-blankline.nvim',
-    function() require('indent-blankline-conf').setup() end
+    config = function() require('indent-blankline-conf').setup() end
   }
 
   if packer_bootstrap then

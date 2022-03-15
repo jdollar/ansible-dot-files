@@ -1,7 +1,7 @@
 local indentBlanklineConf = {}
 
 function indentBlanklineConf.setup()
-  local indentBlankline = require('indent-blankline')
+  local indentBlankline = require('indent_blankline')
 
   vim.opt.list = true
 
