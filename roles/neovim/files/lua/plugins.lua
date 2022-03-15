@@ -1,11 +1,5 @@
-local packer_bootstrap
-local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  packer_bootstrap = vim.fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-end
-
-require('packer').startup(function(use)
-  use { "wbthomason/packer.nvim" }
+return require('packer').startup(function(use)
+  use { "wbthomason/packer.nvim", opt = true }
 
   use 'bling/vim-airline'
   use 'jeetsukumaran/vim-filebeagle'
@@ -13,7 +7,7 @@ require('packer').startup(function(use)
   -- colorscheme
   use {
     'sainnhe/everforest',
-    config = function() require('zenbones-conf').setup() end
+    config = function() require('zenbones-conf') end
   }
   --use {
   --  'RRethy/nvim-base16',
@@ -35,12 +29,12 @@ require('packer').startup(function(use)
   -- file explorer
   use {
     'scrooloose/nerdtree',
-    config = function() require('nerdtree-conf').setup() end
+    config = function() require('nerdtree-conf') end
   }
   -- file icons
   use {
     'ryanoasis/vim-devicons',
-    config = function() require('vim-devicons-conf').setup() end
+    config = function() require('vim-devicons-conf') end
   }
   
   -- language server support
@@ -48,7 +42,7 @@ require('packer').startup(function(use)
   use {
     'williamboman/nvim-lsp-installer',
     config = function()
-      require('nvim-lsp-installer-conf').setup()
+      -- require('nvim-lsp-installer-conf')
     end,
     requires = {
       'neovim/nvim-lspconfig',
@@ -59,7 +53,7 @@ require('packer').startup(function(use)
   use {
     'hrsh7th/nvim-cmp',
     config = function()
-      require('nvim-cmp-conf').setup()
+      -- require('nvim-cmp-conf')
     end,
     requires = {
       'hrsh7th/cmp-buffer',
@@ -75,7 +69,7 @@ require('packer').startup(function(use)
   use {
     'ray-x/lsp_signature.nvim',
     config = function()
-      require('lsp-signature-conf').setup()
+      require('lsp-signature-conf')
     end
   }
 
@@ -83,21 +77,21 @@ require('packer').startup(function(use)
   use {
     'junegunn/fzf',
     run = function() vim.fn['fzf#install']() end,
-    config = function() require('fzf-conf').setup() end
+    config = function() require('fzf-conf') end
   }
   use 'junegunn/fzf.vim'
 
   -- auto close brackets + parenthesis
   use {
     'windwp/nvim-autopairs',
-    config = function() require('nvim-autopairs-conf').setup() end
+    config = function() require('nvim-autopairs-conf') end
   }
 
   -- Abstraction layer for nvim syntax highlighting
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
-    config = function() require('nvim-treesitter-conf').setup() end
+    config = function() require('nvim-treesitter-conf') end
   }
   -- Module for treesitter, rainbow parans
   use 'p00f/nvim-ts-rainbow'
@@ -105,11 +99,7 @@ require('packer').startup(function(use)
   -- Indent guides
   use {
     'lukas-reineke/indent-blankline.nvim',
-    config = function() require('indent-blankline-conf').setup() end
+    config = function() require('indent-blankline-conf') end
   }
-
-  if packer_bootstrap then
-    require('packer').sync()
-  end
 end)
 

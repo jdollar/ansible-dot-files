@@ -1,15 +1,7 @@
-local indentBlanklineConf = {}
+vim.opt.list = true
 
-function indentBlanklineConf.setup()
-  local indentBlankline = require('indent_blankline')
-
-  vim.opt.list = true
-
-  indentBlankline.setup({
-    show_current_context = true,
-    show_current_context_start = true
-  })
-end
-
-return indentBlanklineConf
+require('indent_blankline').setup({
+  show_current_context = true,
+  show_current_context_start = true
+})
 

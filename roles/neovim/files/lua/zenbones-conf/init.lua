@@ -1,18 +1,15 @@
-local ZenbonesConf = {}
+vim.cmd([[
+  if has('termguicolors')
+    set termguicolors
+  endif
 
-function ZenbonesConf.setup()
-  vim.cmd([[
-    if has('termguicolors')
-      set termguicolors
-    endif
+  set background=dark
 
-    set background=dark
+  let g:everforest_background = 'soft'
+  let g:everforest_enable_italic = 1
 
-    let g:everforest_background = 'soft'
-    let g:everforest_enable_italic = 1
-
-    colorscheme everforest
-  ]])
+  colorscheme everforest
+]])
 
   -- Modified zenburn, white on 0F
   --require('base16-colorscheme').setup({
@@ -21,7 +18,4 @@ function ZenbonesConf.setup()
   --  base08 = '#dca3a3', base09 = '#dfaf8f', base0A = '#e0cf9f', base0B = '#5f7f5f',
   --  base0C = '#93e0e3', base0D = '#7cb8bb', base0E = '#dc8cc3', base0F = '#ffffff'
   --})
-end
-
-return ZenbonesConf
 

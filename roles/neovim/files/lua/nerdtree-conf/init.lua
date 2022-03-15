@@ -1,24 +1,18 @@
-local NerdTreeConf = {}
+vim.g.NERDTreeWinPos = 'right'
 
-function NerdTreeConf.setup()
-  vim.g.NERDTreeWinPos = 'right'
-
-  vim.cmd([[
-  function! s:toggleNERDTreeFind()
-      if g:NERDTree.IsOpen()
-          execute ':NERDTreeClose'
+vim.cmd([[
+function! s:toggleNERDTreeFind()
+    if g:NERDTree.IsOpen()
+        execute ':NERDTreeClose'
+    else
+      if bufname('%') == ''
+          execute ':NERDTree'
       else
-        if bufname('%') == ''
-            execute ':NERDTree'
-        else
-            execute ':NERDTreeFind'
-        endif
+          execute ':NERDTreeFind'
       endif
-  endfunction
+    endif
+endfunction
 
-  command! ToggleNERDTreeFind :call s:toggleNERDTreeFind()
-  ]])
-end
-
-return NerdTreeConf
+command! ToggleNERDTreeFind :call s:toggleNERDTreeFind()
+]])
 
