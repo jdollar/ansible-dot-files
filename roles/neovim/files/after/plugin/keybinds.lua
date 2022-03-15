@@ -10,7 +10,7 @@ vim.api.nvim_set_keymap(
 vim.api.nvim_set_keymap(
   'n',
   '<C-p>',
-  ':Files<CR>',
+  ':GFiles<CR>',
   { noremap = false }
 )
 

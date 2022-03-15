@@ -12,9 +12,13 @@ require('packer').startup(function(use)
   
   -- colorscheme
   use {
-    'RRethy/nvim-base16',
+    'sainnhe/everforest',
     config = function() require('zenbones-conf').setup() end
   }
+  --use {
+  --  'RRethy/nvim-base16',
+  --  config = function() require('zenbones-conf').setup() end
+  --}
   
   -- git functionality
   use {
