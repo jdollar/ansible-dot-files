@@ -29,6 +29,9 @@ function NvimTreesitterConfig.setup()
     rainbow = {
       enable = true,
       max_file_lines = nil
+    },
+    indent = {
+      enable = true
     }
   }
 end

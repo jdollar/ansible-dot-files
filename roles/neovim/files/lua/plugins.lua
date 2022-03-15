@@ -1,29 +1,29 @@
+local packer_bootstrap
 local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   packer_bootstrap = vim.fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
-
---vim.cmd [[packadd packer.nvim]]
-
---vim.cmd([[
---  augroup packer_user_config
---    autocmd!
---    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
---  augroup end
---]])
 
 require('packer').startup(function(use)
   use { "wbthomason/packer.nvim" }
 
   use 'bling/vim-airline'
   use 'jeetsukumaran/vim-filebeagle'
+
+  -- colorscheme
   use {
-    'flazz/vim-colorschemes',
-    config = function() require('vim-colorschemes-conf').setup() end
+    'RRethy/nvim-base16',
+    config = function() require('zenbones-conf').setup() end
   }
 
-  -- cool git changes in gutter on left
-  use 'airblade/vim-gitgutter'
+  -- git functionality
+  use {
+    'lewis6991/gitsigns.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim'
+    },
+    config = function() require('gitsigns').setup() end
+  }
 
   -- enables use of .editorconfig files
   use 'editorconfig/editorconfig-vim'
@@ -98,7 +98,14 @@ require('packer').startup(function(use)
   -- Module for treesitter, rainbow parans
   use 'p00f/nvim-ts-rainbow'
 
+  -- Indent guides
+  use {
+    'lukas-reineke/indent-blankline.nvim',
+    function() require('indent-blankline-conf').setup() end
+  }
+
   if packer_bootstrap then
     require('packer').sync()
   end
 end)
+

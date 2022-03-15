@@ -20,7 +20,7 @@ vim.opt.relativenumber = true
 vim.opt.nu = true
 vim.opt.rnu = true
 
-vim.opt.background = 'dark'
+--vim.opt.background = 'dark'
 vim.opt.laststatus = 2
 vim.opt.wrap = false
 
@@ -33,5 +33,4 @@ vim.opt.shiftwidth = 2
 vim.opt.autoindent = true
 
 require('plugins')
-
 
