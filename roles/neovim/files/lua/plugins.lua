@@ -67,6 +67,14 @@ require('packer').startup(function(use)
     }
   }
 
+  -- Signature argument documentation
+  use {
+    'ray-x/lsp_signature.nvim',
+    config = function()
+      require('lsp-signature-conf').setup()
+    end
+  }
+
   -- fuzzy file search/finder
   use {
     'junegunn/fzf',

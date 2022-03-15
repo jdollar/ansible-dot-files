@@ -5,7 +5,42 @@ function NvimCmpConf.setup()
 
   vim.o.completeopt = 'menu,menuone,noselect'
 
+  local cmp_kinds = {
+    Text = '  ',
+    Method = '  ',
+    Function = '  ',
+    Constructor = '  ',
+    Field = '  ',
+    Variable = '  ',
+    Class = '  ',
+    Interface = '  ',
+    Module = '  ',
+    Property = '  ',
+    Unit = '  ',
+    Value = '  ',
+    Enum = '  ',
+    Keyword = '  ',
+    Snippet = '  ',
+    Color = '  ',
+    File = '  ',
+    Reference = '  ',
+    Folder = '  ',
+    EnumMember = '  ',
+    Constant = '  ',
+    Struct = '  ',
+    Event = '  ',
+    Operator = '  ',
+    TypeParameter = '  ',
+  }
+
   cmp.setup({
+    -- Setup icons on the autocomplete menu
+    formatting = {
+      format = function(_, vim_item)
+        vim_item.kind = (cmp_kinds[vim_item.kind] or '') .. vim_item.kind
+        return vim_item
+      end,
+    },
     snippet = {
       -- REQUIRED - you must specify a snippet engine
       expand = function(args)
@@ -15,16 +50,6 @@ function NvimCmpConf.setup()
     mapping = {
       ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
       ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-      ['<C-s>'] = cmp.mapping(
-        cmp.mapping.complete({
-          config = {
-            sources = {
-              { name = 'vsnip' }
-            }
-          }
-        }),
-        { 'i', 'c' }
-      ),
       ['<C-e>'] = cmp.mapping({
         i = cmp.mapping.abort(),
         c = cmp.mapping.close(),
