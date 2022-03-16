@@ -39,13 +39,13 @@ return require('packer').startup(function(use)
   
   -- language server support
   use 'hrsh7th/cmp-nvim-lsp'
+  use 'neovim/nvim-lspconfig'
   use {
     'williamboman/nvim-lsp-installer',
     config = function()
-      -- require('nvim-lsp-installer-conf')
+      require('nvim-lsp-installer-conf')
     end,
     requires = {
-      'neovim/nvim-lspconfig',
       'hrsh7th/cmp-nvim-lsp'
     }
   }
