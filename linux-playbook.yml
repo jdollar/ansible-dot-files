@@ -5,6 +5,7 @@
   roles:
     - {role: 'gpg', tags: 'gpg'}
     - {role: 'git', tags: 'git'}
+    - {role: 'fd', tags: 'fd'}
     - {role: 'fzf', tags: 'fzf'}
     - {role: 'ripgrep', tags: 'ripgrep'}
     - {role: 'neovim', tags: 'neovim'}

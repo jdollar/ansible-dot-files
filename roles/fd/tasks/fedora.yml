@@ -1,0 +1,7 @@
+---
+- name: call dnf with fd
+  include_tasks:
+    file: 'roles/common/tasks/dnf-install.yml'
+  vars:
+    packages: fd-find
+
