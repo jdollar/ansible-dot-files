@@ -1,5 +1,7 @@
 vim.o.completeopt = 'menu,menuone,noselect'
 
+local cmp = require('cmp')
+
 local cmp_kinds = {
   Text = '  ',
   Method = '  ',
@@ -28,7 +30,7 @@ local cmp_kinds = {
   TypeParameter = '  ',
 }
 
-require('cmp').setup({
+cmp.setup({
   -- Setup icons on the autocomplete menu
   formatting = {
     format = function(_, vim_item)
@@ -75,14 +77,14 @@ require('cmp').setup({
 
 
 -- '/' Command line setup
-require('cmp').setup.cmdline('/', {
+cmp.setup.cmdline('/', {
   sources = {
     { name = 'buffer' }
   }
 })
 
 -- `:` cmdline setup.
-require('cmp').setup.cmdline(':', {
+cmp.setup.cmdline(':', {
   sources = cmp.config.sources({
     { name = 'path' }
   }, {
