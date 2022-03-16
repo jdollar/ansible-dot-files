@@ -45,3 +45,19 @@ vim.api.nvim_set_keymap(
   ':cp<CR>',
   { noremap = false }
 )
+
+-- quickfix -- open quickfix again
+vim.api.nvim_set_keymap(
+  'n',
+  '<Leader>qo',
+  ':copen<CR>',
+  { noremap = false }
+)
+
+-- quickfix -- close quickfix
+vim.api.nvim_set_keymap(
+  'n',
+  '<Leader>qc',
+  ':cclose<CR>',
+  { noremap = false }
+)
