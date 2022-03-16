@@ -1,15 +1,9 @@
-vim.cmd([[
-  if has('termguicolors')
-    set termguicolors
-  endif
+vim.o.termguicolors = true
+vim.o.background = "dark"
+vim.g.everforest_background = "soft"
+vim.g.everforest_enable_italic = 1
 
-  set background=dark
-
-  let g:everforest_background = 'soft'
-  let g:everforest_enable_italic = 1
-
-  colorscheme everforest
-]])
+vim.cmd('colorscheme everforest')
 
   -- Modified zenburn, white on 0F
   --require('base16-colorscheme').setup({
