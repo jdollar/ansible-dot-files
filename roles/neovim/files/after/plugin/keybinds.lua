@@ -30,3 +30,18 @@ vim.api.nvim_set_keymap(
   { noremap = false }
 )
 
+-- quickfix -- go to the next record
+vim.api.nvim_set_keymap(
+  'n',
+  '<Leader>n',
+  ':cn<CR>',
+  { noremap = false }
+)
+
+-- quickfix -- go to the prev record
+vim.api.nvim_set_keymap(
+  'n',
+  '<Leader>p',
+  ':cp<CR>',
+  { noremap = false }
+)
