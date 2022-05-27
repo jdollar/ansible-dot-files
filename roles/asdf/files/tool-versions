@@ -1,6 +1,7 @@
 nodejs lts
-golang 1.17
+golang 1.18
 python 3.10.2
 ruby 3.1.1
 rust 1.59.0
+php 8.1.5
 
