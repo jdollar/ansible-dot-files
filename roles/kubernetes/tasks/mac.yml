@@ -1,0 +1,4 @@
+---
+- name: install helm
+  homebrew:
+    name: helm

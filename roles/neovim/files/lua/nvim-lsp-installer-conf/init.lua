@@ -7,6 +7,7 @@ local servers = {
   "dockerls", -- Dockerfiles
   "eslint",
   "gopls", -- Golang
+  "intelephense", -- PHP
   "jsonls", -- JSON
   "pyright", -- Pythn
   "rust_analyzer", -- Rust
