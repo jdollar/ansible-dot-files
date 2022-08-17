@@ -21,3 +21,6 @@
     path: "{{ homebrew_install_script_loc }}"
   become: yes
 
+- import_tasks: mac.yml
+  when: ansible_os_platform|lower == 'mac'
+

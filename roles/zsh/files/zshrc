@@ -104,5 +104,3 @@ for file in ~/.config/zsh/alias.d/**/*(Nx); do source $file; done
 for file in ~/.config/zsh/zshrc.d/**/*(Nx); do source $file; done
 for file in ~/.config/zsh/env.d/**/*(Nx); do source $file; done
 
-eval $(/opt/homebrew/bin/brew shellenv)
-
