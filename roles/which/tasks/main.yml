@@ -1,0 +1,10 @@
+---
+- import_tasks: mac.yml
+  when: ansible_os_platform|lower == 'mac'
+
+- import_tasks: fedora.yml
+  when: ansible_facts['distribution'] == 'Fedora'
+
+- include_tasks:
+    file: roles/common/tasks/zsh-file-symlink.yml
+

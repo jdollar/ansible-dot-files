@@ -9,6 +9,9 @@
     fonts_dir: ~/.local/share/fonts
   when: ansible_os_platform|lower != 'mac'
 
+- import_tasks: fedora.yml
+  when: ansible_facts['distribution'] == 'Fedora'
+
 - name: make Hack Nerd Font directory 
   file:
     path: "{{ fonts_dir }}/nerd-fonts/Hack"
@@ -39,5 +42,6 @@
     dest: ~/.config/fontconfig/conf.d/10-nerd-font-symbols.conf
 
 - name: update fc cache
+  become: true
   command: fc-cache -rv
 

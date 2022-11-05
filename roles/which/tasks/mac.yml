@@ -1,0 +1,5 @@
+---
+- name: install bat
+  homebrew:
+    name: bat
+

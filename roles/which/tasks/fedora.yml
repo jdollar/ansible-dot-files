@@ -1,7 +1,7 @@
 ---
-- name: call dnf with neovim
+- name: install which
   include_tasks:
     file: 'roles/common/tasks/dnf-install.yml'
   vars:
-    packages: neovim g++
+    packages: which
 
