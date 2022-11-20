@@ -73,6 +73,15 @@ return require('packer').startup(function(use)
     end
   }
 
+  -- Php linter
+  use {
+    'stephpy/vim-php-cs-fixer',
+    config = function()
+      vim.g.php_cs_fixer_php_path = "php"
+      vim.cmd[[autocmd BufWritePost *.php silent! call PhpCsFixerFixFile()]]
+    end
+  }
+
   -- fuzzy file search/finder
   use {
     'junegunn/fzf',
@@ -100,6 +109,12 @@ return require('packer').startup(function(use)
   use {
     'lukas-reineke/indent-blankline.nvim',
     config = function() require('indent-blankline-conf') end
+  }
+
+  -- Facilitate generating doc blocks
+  use {
+    'kkoomen/vim-doge',
+    run = ':call doge#install()'
   }
 
   -- Display lsp errors better

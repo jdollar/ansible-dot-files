@@ -1,0 +1,14 @@
+---
+- import_tasks: fedora.yml
+  when: ansible_facts['distribution'] == 'Fedora'
+
+- name: Create i3 config directory
+  file:
+    path: "~/.config/i3"
+    state: directory
+
+- name: Symlink config
+  file:
+    src: "{{ role_path }}/files/config"
+    dest: "~/.config/i3/config"
+    state: link

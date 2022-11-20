@@ -1,0 +1,8 @@
+- import_tasks: fedora.yml
+  when: ansible_facts['distribution'] == 'Fedora'
+
+- name: Assign group video to current user
+  become: true
+  ansible.builtin.user:
+    name: "{{ ansible_user_id }}"
+    group: video
