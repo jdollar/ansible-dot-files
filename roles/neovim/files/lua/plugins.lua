@@ -26,13 +26,17 @@ return require('packer').startup(function(use)
   -- language server support
   use 'hrsh7th/cmp-nvim-lsp'
   use 'neovim/nvim-lspconfig'
+
+  -- json schemas for language server
+  use "b0o/schemastore.nvim"
+
   use {
     'williamboman/nvim-lsp-installer',
     requires = {
       'hrsh7th/cmp-nvim-lsp'
     }
   }
-  
+
   use {
     'hrsh7th/nvim-cmp',
     requires = {
@@ -44,6 +48,9 @@ return require('packer').startup(function(use)
       'hrsh7th/vim-vsnip'
     }
   }
+
+  -- Displays popup for keybind help
+  use 'folke/which-key.nvim'
 
   -- Signature argument documentation
   use 'ray-x/lsp_signature.nvim'
@@ -62,6 +69,7 @@ return require('packer').startup(function(use)
   use 'windwp/nvim-autopairs'
 
   -- Abstraction layer for nvim syntax highlighting
+  -- Adds language parsers and max syntax pretty
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
@@ -83,6 +91,9 @@ return require('packer').startup(function(use)
     "folke/trouble.nvim",
     requires = "kyazdani42/nvim-web-devicons",
   }
+
+  -- Undotree
+  use 'mbbill/undotree'
 end
 )
 

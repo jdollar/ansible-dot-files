@@ -76,6 +76,23 @@ require("nvim-lsp-installer").on_server_ready(function(server)
       }
     end
 
+    if server.name == 'jsonls' then
+      server_opts.settings = {
+        json = {
+          schemas = require('schemastore').json.schemas(),
+          validate = { enable = true },
+        },
+      }
+    end
+
+    if server.name == 'yamlls' then
+      server_opts.settings = {
+        yaml = {
+          schemaStore = { enable = true },
+        },
+      }
+    end
+
     if server.name == 'gopls' then
       server_opts.settings = {
         gofumpt = true,

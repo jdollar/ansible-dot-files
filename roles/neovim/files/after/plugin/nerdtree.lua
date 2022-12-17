@@ -18,3 +18,10 @@ endfunction
 command! ToggleNERDTreeFind :call s:toggleNERDTreeFind()
 ]])
 
+vim.api.nvim_set_keymap(
+  'n',
+  '<C-b>',
+  ':ToggleNERDTreeFind<CR>',
+  { noremap = false }
+)
+
