@@ -3,48 +3,31 @@ return require('packer').startup(function(use)
 
   use 'bling/vim-airline'
   use 'jeetsukumaran/vim-filebeagle'
-  
+
   -- colorscheme
-  use {
-    'sainnhe/everforest',
-    config = function() require('zenbones-conf') end
-  }
-  --use {
-  --  'RRethy/nvim-base16',
-  --  config = function() require('zenbones-conf').setup() end
-  --}
-  
+  use 'sainnhe/everforest'
+  --
   -- git functionality
   use {
     'lewis6991/gitsigns.nvim',
     requires = {
       'nvim-lua/plenary.nvim'
     },
-    config = function() require('gitsigns').setup() end
   }
-  
+
   -- enables use of .editorconfig files
   use 'editorconfig/editorconfig-vim'
-  
+
   -- file explorer
-  use {
-    'scrooloose/nerdtree',
-    config = function() require('nerdtree-conf') end
-  }
+  use  'scrooloose/nerdtree'
   -- file icons
-  use {
-    'ryanoasis/vim-devicons',
-    config = function() require('vim-devicons-conf') end
-  }
-  
+  use 'ryanoasis/vim-devicons'
+
   -- language server support
   use 'hrsh7th/cmp-nvim-lsp'
   use 'neovim/nvim-lspconfig'
   use {
     'williamboman/nvim-lsp-installer',
-    config = function()
-      require('nvim-lsp-installer-conf')
-    end,
     requires = {
       'hrsh7th/cmp-nvim-lsp'
     }
@@ -52,9 +35,6 @@ return require('packer').startup(function(use)
   
   use {
     'hrsh7th/nvim-cmp',
-    config = function()
-      require('nvim-cmp-conf')
-    end,
     requires = {
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
@@ -66,50 +46,31 @@ return require('packer').startup(function(use)
   }
 
   -- Signature argument documentation
-  use {
-    'ray-x/lsp_signature.nvim',
-    config = function()
-      require('lsp-signature-conf')
-    end
-  }
+  use 'ray-x/lsp_signature.nvim'
 
   -- Php linter
-  use {
-    'stephpy/vim-php-cs-fixer',
-    config = function()
-      vim.g.php_cs_fixer_php_path = "php"
-      vim.cmd[[autocmd BufWritePost *.php silent! call PhpCsFixerFixFile()]]
-    end
-  }
+  use 'stephpy/vim-php-cs-fixer'
 
   -- fuzzy file search/finder
   use {
     'junegunn/fzf',
     run = function() vim.fn['fzf#install']() end,
-    config = function() require('fzf-conf') end
   }
   use 'junegunn/fzf.vim'
 
   -- auto close brackets + parenthesis
-  use {
-    'windwp/nvim-autopairs',
-    config = function() require('nvim-autopairs-conf') end
-  }
+  use 'windwp/nvim-autopairs'
 
   -- Abstraction layer for nvim syntax highlighting
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
-    config = function() require('nvim-treesitter-conf') end
   }
   -- Module for treesitter, rainbow parans
   use 'p00f/nvim-ts-rainbow'
 
   -- Indent guides
-  use {
-    'lukas-reineke/indent-blankline.nvim',
-    config = function() require('indent-blankline-conf') end
-  }
+  use 'lukas-reineke/indent-blankline.nvim'
 
   -- Facilitate generating doc blocks
   use {
@@ -121,13 +82,6 @@ return require('packer').startup(function(use)
   use {
     "folke/trouble.nvim",
     requires = "kyazdani42/nvim-web-devicons",
-    config = function()
-    require("trouble").setup {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
-    }
-    end
   }
 end
 )

@@ -1,4 +1,4 @@
-local lsp_installer = require("nvim-lsp-installer")
+-- local lsp_installer = require("nvim-lsp-installer")
 
 -- Include the servers you want to have installed by default below
 local servers = {

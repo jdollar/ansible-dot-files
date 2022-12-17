@@ -1,6 +1,5 @@
 -- display one line menu because of padding bug in new version
 vim.g.NERDTreeMinimalMenu = 1
-
 vim.g.NERDTreeWinPos = 'right'
 
 vim.cmd([[
