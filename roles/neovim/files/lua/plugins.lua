@@ -1,12 +1,15 @@
 return require('packer').startup(function(use)
   use { "wbthomason/packer.nvim", opt = true }
 
+  -- allows reopening files with sudo
+  -- or writing files with sudo
+  use 'lambdalisue/suda.vim'
+
   use 'bling/vim-airline'
-  use 'jeetsukumaran/vim-filebeagle'
 
   -- colorscheme
   use 'sainnhe/everforest'
-  --
+
   -- git functionality
   use {
     'lewis6991/gitsigns.nvim',
@@ -19,23 +22,26 @@ return require('packer').startup(function(use)
   use 'editorconfig/editorconfig-vim'
 
   -- file explorer
-  use  'scrooloose/nerdtree'
+  use 'scrooloose/nerdtree'
   -- file icons
   use 'ryanoasis/vim-devicons'
 
   -- language server support
-  use 'hrsh7th/cmp-nvim-lsp'
+  use "williamboman/mason.nvim"
+  use "williamboman/mason-lspconfig.nvim"
   use 'neovim/nvim-lspconfig'
+  use 'hrsh7th/cmp-nvim-lsp'
+
+  -- Linter support
+  use "jose-elias-alvarez/null-ls.nvim"
+  use "jayp0521/mason-null-ls.nvim"
 
   -- json schemas for language server
   use "b0o/schemastore.nvim"
 
-  use {
-    'williamboman/nvim-lsp-installer',
-    requires = {
-      'hrsh7th/cmp-nvim-lsp'
-    }
-  }
+  -- Snippet functionality
+  use { 'L3MON4D3/LuaSnip' }
+  use { 'saadparwaiz1/cmp_luasnip' }
 
   use {
     'hrsh7th/nvim-cmp',
@@ -44,8 +50,7 @@ return require('packer').startup(function(use)
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-cmdline',
       'hrsh7th/nvim-cmp',
-      'hrsh7th/cmp-vsnip',
-      'hrsh7th/vim-vsnip'
+      'hrsh7th/cmp-nvim-lsp'
     }
   }
 
@@ -54,9 +59,6 @@ return require('packer').startup(function(use)
 
   -- Signature argument documentation
   use 'ray-x/lsp_signature.nvim'
-
-  -- Php linter
-  use 'stephpy/vim-php-cs-fixer'
 
   -- fuzzy file search/finder
   use {
@@ -96,4 +98,3 @@ return require('packer').startup(function(use)
   use 'mbbill/undotree'
 end
 )
-
