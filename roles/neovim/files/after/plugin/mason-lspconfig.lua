@@ -1,25 +1,63 @@
 local lspconfig = require('lspconfig')
+local lsp_signature = require("lsp_signature")
 
 -- Include the servers you want to have installed by default below
 local servers = {
-  "ansiblels", -- Ansible
-  "bashls",
-  "dockerls", -- Dockerfiles
-  "eslint",
-  "gopls", -- Golang
-  "intelephense", -- PHP
-  "jsonls", -- JSON
-  "pyright", -- Python
-  "rust_analyzer", -- Rust
-  "sumneko_lua", -- Lua
-  "tflint", -- Terraform
-  "tsserver", -- JS
-  "vimls", -- vimscript
-  "yamlls", -- yaml
+  -- Ansible
+  ansiblels = {},
+  -- Bash
+  bashls = {},
+  -- Dockerfiles
+  dockerls = {},
+  -- Golang
+  gopls = {},
+  -- PHP
+  intelephense = {},
+  -- JSON
+  jsonls = {
+    settings = {
+      json = {
+        schemas = require('schemastore').json.schemas(),
+        validate = { enable = true },
+      },
+    }
+  },
+  -- Python
+  pyright = {},
+  -- Rust
+  rust_analyzer = {},
+  -- Lua
+  sumneko_lua = {
+    settings = {
+      Lua = {
+        -- Setup vim as a known global so we don't get warnings in vim lua files
+        diagnostics = { globals = { 'vim' } }
+      }
+    }
+  },
+  -- Terraform
+  tflint = {},
+  -- Javascript
+  tsserver = {},
+  -- Vimscript
+  vimls = {},
+  -- yaml
+  yamlls = {
+    settings = {
+      yaml = {
+        schemaStore = { enable = true },
+      },
+    }
+  },
 }
 
+local server_keys = {}
+for k, _ in pairs(servers) do
+  table.insert(server_keys, k)
+end
+
 require('mason-lspconfig').setup {
-  ensure_installed = servers
+  ensure_installed = server_keys
 }
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -36,6 +74,9 @@ vim.api.nvim_set_keymap('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
+  -- Gives more informative signature help when typing
+  lsp_signature.on_attach({}, bufnr)
+
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
@@ -56,6 +97,7 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>cI', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
+  -- Setup formatting on save
   vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
   vim.api.nvim_create_autocmd(
     { "BufWritePre" },
@@ -67,84 +109,15 @@ local on_attach = function(client, bufnr)
   )
 end
 
-lspconfig.sumneko_lua.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  settings = {
-    Lua = {
-      -- Setup vim as a known global so we don't get warnings in vim lua files
-      diagnostics = { globals = { 'vim' } }
-    }
+for server, config in pairs(servers) do
+  local server_config = {
+    on_attach = on_attach,
+    capabilities = capabilities
   }
-}
 
-lspconfig.jsonls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  settings = {
-    json = {
-      schemas = require('schemastore').json.schemas(),
-      validate = { enable = true },
-    },
-  }
-}
-
-lspconfig.yamlls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  settings = {
-    yaml = {
-      schemaStore = { enable = true },
-    },
-  }
-}
-
-local function go_org_imports(wait_ms)
-  local params = vim.lsp.util.make_range_params()
-  params.context = { only = { "source.organizeImports" } }
-  local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, wait_ms)
-  for cid, res in pairs(result or {}) do
-    for _, r in pairs(res.result or {}) do
-      if r.edit then
-        local enc = (vim.lsp.get_client_by_id(cid) or {}).offset_encoding or "utf-16"
-        vim.lsp.util.apply_workspace_edit(r.edit, enc)
-      end
-    end
+  for k, v in pairs(config) do
+    server_config[k] = v
   end
-end
 
-lspconfig.gopls.setup {
-  on_attach = function(client, bufnr)
-    on_attach(client, bufnr)
-
-    vim.api.nvim_create_autocmd(
-      { "BufWritePre" },
-      {
-        group = augroup,
-        pattern = { "*.go" },
-        callback = function() go_org_imports() end
-      }
-    )
-  end,
-  capabilities = capabilities,
-  settings = {
-    gofumpt = true,
-  }
-}
-
-local default_servers = {
-  "ansiblels", -- Ansible
-  "bashls",
-  "dockerls", -- Dockerfiles
-  "eslint",
-  "intelephense", -- PHP
-  "pyright", -- Pythn
-  "rust_analyzer", -- Rust
-  "tflint", -- Terraform
-  "tsserver", -- JS
-  "vimls", -- vimscript
-}
-
-for _, server in ipairs(default_servers) do
-  lspconfig[server].setup { on_attach = on_attach, capabilities = capabilities }
+  lspconfig[server].setup(server_config)
 end
