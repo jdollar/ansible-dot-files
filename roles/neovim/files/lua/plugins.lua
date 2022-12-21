@@ -5,7 +5,10 @@ return require('packer').startup(function(use)
   -- or writing files with sudo
   use 'lambdalisue/suda.vim'
 
-  use 'bling/vim-airline'
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+  }
 
   -- colorscheme
   use 'sainnhe/everforest'
