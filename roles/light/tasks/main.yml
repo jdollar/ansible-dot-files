@@ -3,7 +3,7 @@
   become: true
   package:
     name: light
-    state: present
+    state: latest
 
 - name: Assign group video to current user
   become: true

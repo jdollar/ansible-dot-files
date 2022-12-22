@@ -3,7 +3,7 @@
   become: true
   package:
     name: git
-    state: present
+    state: latest
 
 - import_tasks: mac.yml
   when: ansible_os_platform|lower == 'mac'
