@@ -1,6 +1,9 @@
 ---
-- import_tasks: fedora.yml
-  when: ansible_facts['distribution'] == 'Fedora'
+- name: install i3
+  become: true
+  package:
+    name: i3
+    state: latest
 
 - name: Create i3 config directory
   file:

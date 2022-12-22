@@ -1,4 +1,0 @@
----
-- name: install alacritty
-  homebrew_cask:
-    name: alacritty

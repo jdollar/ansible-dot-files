@@ -1,7 +1,0 @@
----
-- name: install zsh with dnf
-  include_tasks:
-    file: 'roles/common/tasks/dnf-install.yml'
-  vars:
-    packages: zsh
-

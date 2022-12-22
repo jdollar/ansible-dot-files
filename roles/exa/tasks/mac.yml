@@ -1,3 +1,0 @@
-- name: install go plugin deps with brew
-  homebrew:
-    name: exa

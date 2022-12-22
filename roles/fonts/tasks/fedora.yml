@@ -1,7 +1,7 @@
 ---
-- name: install bat
-  include_tasks:
-    file: 'roles/common/tasks/dnf-install.yml'
-  vars:
-    packages: fontconfig
+- name: install fontconfig
+  become: true
+  package:
+    name: fontconfig
+    state: latest
 

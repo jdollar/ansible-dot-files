@@ -1,9 +1,19 @@
 ---
-- import_tasks: mac.yml
-  when: ansible_os_platform|lower == 'mac'
+- name: Setup gpg task for OS
+  ansible.builtin.include_vars: "{{ lookup('ansible.builtin.first_found', params) }}"
+  vars:
+    params:
+      files:
+        - '{{ansible_distribution|lower}}.yml'
+        - '{{ansible_os_platform|lower}}.yml'
+      paths:
+        - 'vars'
 
-- import_tasks: fedora.yml
-  when: ansible_facts['distribution'] == 'Fedora'
+- name: install fd
+  become: true
+  package:
+    name: "{{ packages }}"
+    state: latest
 
 - include_tasks:
     file: roles/common/tasks/zsh-file-symlink.yml

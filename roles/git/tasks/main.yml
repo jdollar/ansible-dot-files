@@ -1,12 +1,15 @@
 ---
+- name: install git
+  become: true
+  package:
+    name: git
+    state: present
+
 - import_tasks: mac.yml
   when: ansible_os_platform|lower == 'mac'
 
 - import_tasks: fedora.yml
   when: ansible_facts['distribution'] == 'Fedora'
-
-- import_tasks: ubuntu.yml
-  when: ansible_facts['distribution'] == 'Ubuntu'
 
 - name: Get HOME directory
   set_fact:

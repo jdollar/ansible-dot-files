@@ -1,3 +1,6 @@
 ---
-- import_tasks: mac.yml
-  when: ansible_os_platform|lower == 'mac'
+- name: install helm
+  become: true
+  package:
+    name: helm
+    state: latest

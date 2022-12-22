@@ -1,4 +1,10 @@
 ---
+- name: install tmux
+  become: true
+  package:
+    name: tmux
+    state: latest
+
 - import_tasks: mac.yml
   when: ansible_os_platform|lower == 'mac'
 

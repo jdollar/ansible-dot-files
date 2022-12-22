@@ -1,12 +1,26 @@
 ---
-- import_tasks: mac.yml
-  when: ansible_os_platform|lower == 'mac'
+- name: Setup asdf task for OS
+  ansible.builtin.include_vars: "{{ lookup('ansible.builtin.first_found', params) }}"
+  vars:
+    params:
+      files:
+        - '{{ansible_distribution|lower}}.yml'
+        - '{{ansible_os_platform|lower}}.yml'
+      paths:
+        - 'vars'
 
-- import_tasks: fedora.yml
-  when: ansible_facts['distribution'] == 'Fedora'
+- name: install pre-reqs
+  become: true
+  when: package_prereq is defined and (package_prereq|length>0)
+  package:
+    name: "{{ package_prereq }}"
+    state: latest
 
-- import_tasks: ubuntu.yml
-  when: ansible_facts['distribution'] == 'Ubuntu'
+- name: install neovim
+  become: true
+  package:
+    name: "{{ packages }}"
+    state: latest
 
 - name: Create config directories
   file:

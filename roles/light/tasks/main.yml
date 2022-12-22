@@ -1,5 +1,9 @@
-- import_tasks: fedora.yml
-  when: ansible_facts['distribution'] == 'Fedora'
+---
+- name: install light
+  become: true
+  package:
+    name: light
+    state: present
 
 - name: Assign group video to current user
   become: true

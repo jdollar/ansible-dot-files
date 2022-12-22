@@ -1,2 +1,4 @@
 ---
 nvim_config_dir: ~/.config/nvim
+packages:
+  - neovim

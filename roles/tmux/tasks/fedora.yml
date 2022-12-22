@@ -1,10 +1,4 @@
 ---
-- name: install tmux
-  include_tasks:
-    file: 'roles/common/tasks/dnf-install.yml'
-  vars:
-    packages: tmux
-
 - name: config ansible for tmux install
   set_fact:
     tmux_platform_config: tmux.linux.conf

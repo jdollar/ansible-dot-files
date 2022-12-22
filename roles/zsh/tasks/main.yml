@@ -1,9 +1,9 @@
 ---
-- import_tasks: mac.yml
-  when: ansible_os_platform|lower == 'mac'
-
-- import_tasks: fedora.yml
-  when: ansible_facts['distribution'] == 'Fedora'
+- name: install zsh
+  become: true
+  package:
+    name: zsh
+    state: latest
 
 - name: download and install oh-my-zsh
   ansible.builtin.shell: sh -c $(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)

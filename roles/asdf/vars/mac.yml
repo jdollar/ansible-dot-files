@@ -1,0 +1,14 @@
+---
+go_deps:
+  - coreutils
+
+ruby_deps:
+  - openssl@1.1
+  - readline
+
+php_deps:
+  - autoconf
+  - gmp
+  - libsodium
+  - imagemagick
+

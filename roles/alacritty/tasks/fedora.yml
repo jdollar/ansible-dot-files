@@ -1,6 +1,0 @@
----
-- name: call dnf with alacritty
-  include_tasks:
-    file: 'roles/common/tasks/dnf-install.yml'
-  vars:
-    packages: alacritty
