@@ -1,0 +1,6 @@
+---
+- name: install age
+  become: true
+  package:
+    name: age
+    state: present
