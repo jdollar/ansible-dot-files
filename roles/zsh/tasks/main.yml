@@ -6,7 +6,7 @@
     state: latest
 
 - name: download and install oh-my-zsh
-  ansible.builtin.shell: sh -c $(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)
+  ansible.builtin.shell: sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
   args:
     chdir: ~
 
