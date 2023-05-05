@@ -28,17 +28,17 @@
     dest: "{{ fonts_dir }}/nerd-fonts/Hack/{{ item.fileName }}"
   loop:
     - fileName: 'hackRegularNerdFontCompleteMono.ttf'
-      url: 'https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Hack/Regular/complete/Hack%20Regular%20Nerd%20Font%20Complete%20Mono.ttf?raw=true'
+      url: 'https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Hack/Regular/HackNerdFontMono-Regular.ttf?raw=true'
     - fileName: 'hackItalicNerdFontCompleteMono.ttf'
-      url: 'https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Hack/Italic/complete/Hack%20Italic%20Nerd%20Font%20Complete%20Mono.ttf?raw=true'
+      url: 'https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Hack/Italic/HackNerdFontMono-Italic.ttf?raw=true'
     - fileName: 'hackBoldItalicNerdFontCompleteMono.ttf'
-      url: 'https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Hack/BoldItalic/complete/Hack%20Bold%20Italic%20Nerd%20Font%20Complete%20Mono.ttf?raw=true'
+      url: 'https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Hack/BoldItalic/HackNerdFontMono-BoldItalic.ttf?raw=true'
     - fileName: 'hackBoldNerdFontCompleteMono.ttf'
-      url: 'https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Hack/Bold/complete/Hack%20Bold%20Nerd%20Font%20Complete%20Mono.ttf?raw=true'
+      url: 'https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Hack/Bold/HackNerdFontMono-Bold.ttf?raw=true'
 
 - name: Download Nerd Fonts config
   get_url:
-    url: https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/10-nerd-font-symbols.conf
+    url: https://github.com/ryanoasis/nerd-fonts/blob/master/10-nerd-font-symbols.conf
     dest: ~/.config/fontconfig/conf.d/10-nerd-font-symbols.conf
 
 - name: update fc cache

@@ -1,3 +1,5 @@
+require('mason').setup()
+
 local lspconfig = require('lspconfig')
 local lsp_signature = require("lsp_signature")
 
@@ -27,7 +29,7 @@ local servers = {
   -- Rust
   rust_analyzer = {},
   -- Lua
-  sumneko_lua = {
+  lua_ls = {
     settings = {
       Lua = {
         -- Setup vim as a known global so we don't get warnings in vim lua files

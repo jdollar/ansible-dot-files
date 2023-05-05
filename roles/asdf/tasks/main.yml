@@ -78,6 +78,7 @@
     - { name: 'python', git: 'https://github.com/danhper/asdf-python' }
     - { name: 'rust', git: 'https://github.com/asdf-community/asdf-rust.git' }
     - { name: 'php', git: 'https://github.com/asdf-community/asdf-php.git' }
+    - { name: 'kubectl', git: 'https://github.com/asdf-community/asdf-kubectl.git' }
 
 - name: install globally defined tool versions
   shell: source ~/.zshrc && asdf install
