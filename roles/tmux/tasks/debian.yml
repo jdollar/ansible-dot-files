@@ -1,0 +1,4 @@
+---
+- name: config ansible for tmux install
+  set_fact:
+    tmux_platform_config: tmux.linux.conf

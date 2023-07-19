@@ -11,6 +11,9 @@
 - import_tasks: fedora.yml
   when: ansible_facts['distribution'] == 'Fedora'
 
+- import_tasks: debian.yml
+  when: ansible_facts['distribution'] == 'Debian'
+
 - include_tasks:
     file: roles/common/tasks/zsh-file-symlink.yml
 

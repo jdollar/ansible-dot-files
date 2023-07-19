@@ -1,10 +1,12 @@
 ---
+- name: test
+  debug: var=ansible_distribution
 - name: Setup gpg task for OS
   ansible.builtin.include_vars: "{{ lookup('ansible.builtin.first_found', params) }}"
   vars:
     params:
       files:
-        - '{{ansible_distribution|lower}}.yml'
+        - "{{ansible_distribution|lower}}.yml"
         - '{{ansible_os_platform|lower}}.yml'
       paths:
         - 'vars'
@@ -12,7 +14,7 @@
 - name: install gpg
   become: true
   package:
-    name: "{{ packages }}"
+    name: "{{ gpgPackages }}"
     state: latest
 
 - include_tasks:

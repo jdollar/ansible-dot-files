@@ -12,23 +12,23 @@
 - name: install go deps
   become: true
   when: go_deps is defined and (go_deps|length>0)
-  package:
+  ansible.builtin.package:
     name: "{{ go_deps }}"
-    state: latest
+    state: present
 
 - name: install ruby deps
   become: true
   when: ruby_deps is defined and (ruby_deps|length>0)
   package:
     name: "{{ ruby_deps }}"
-    state: latest
+    state: present
 
 - name: install php deps
   become: true
   when: php_deps is defined and (php_deps|length>0)
   package:
     name: "{{ php_deps }}"
-    state: latest
+    state: present
 
 - name: Clone asdf
   ansible.builtin.git:

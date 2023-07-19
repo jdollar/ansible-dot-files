@@ -16,10 +16,10 @@
     dest: "~/.config/alacritty/alacritty.yml"
     state: link
 
-- name: download term info
-  shell: curl -sSL https://raw.githubusercontent.com/alacritty/alacritty/master/extra/alacritty.info -o /tmp/alacritty.terminfo
-  args:
-    executable: /bin/zsh
+- name: Download term info
+  get_url:
+    url: "https://raw.githubusercontent.com/alacritty/alacritty/master/extra/alacritty.info"
+    dest: "/tmp/alacritty.terminfo"
 
 - name: install alacritty term info
   shell: tic -x /tmp/alacritty.terminfo

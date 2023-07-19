@@ -12,15 +12,15 @@
 - name: install pre-reqs
   become: true
   when: package_prereq is defined and (package_prereq|length>0)
-  package:
+  ansible.builtin.package:
     name: "{{ package_prereq }}"
-    state: latest
+    state: present
 
 - name: install neovim
   become: true
-  package:
-    name: "{{ packages }}"
-    state: latest
+  ansible.builtin.package:
+    name: "{{ neovim_packages }}"
+    state: present
 
 - name: Create config directories
   file:
