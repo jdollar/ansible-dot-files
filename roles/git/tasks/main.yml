@@ -8,8 +8,10 @@
 - import_tasks: mac.yml
   when: ansible_os_platform|lower == 'mac'
 
-- import_tasks: fedora.yml
-  when: ansible_facts['distribution'] == 'Fedora'
+- import_tasks: linux.yml
+  when: (ansible_facts['distribution'] == 'Fedora') or
+        (ansible_facts['distribution'] == 'Debian') or
+        (ansible_facts['distribution'] == 'openSUSE Tumbleweed')
 
 - name: Get HOME directory
   set_fact:
@@ -23,8 +25,28 @@
   set_fact:
     gpg_bin: "{{ which_gpg_command.stdout }}"
 
+- name: Create config directory
+  file:
+    path: "~/.config/git"
+    state: directory
+
+- name: Symlink additional configs
+  file:
+    src: "{{ role_path }}/files/gitconfig.{{ item }}"
+    dest: "~/.config/git/gitconfig.{{ item }}"
+    state: link
+  loop:
+    - personal
+    - work
+
+- name: default personal config
+  file:
+    src: "{{ role_path }}/files/gitconfig.personal"
+    dest: "~/.config/git/gitconfig.gpgconfig"
+    state: link
+
 - name: Create gitconfig
   ansible.builtin.template:
     src: "{{ role_path }}/files/gitconfig.j2"
-    dest: "~/.gitconfig"
+    dest: "~/.config/git/.gitconfig"
 
