@@ -1,0 +1,3 @@
+---
+package_prereq:
+  - gcc-c++

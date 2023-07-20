@@ -15,5 +15,5 @@
     - {role: 'tmux', tags: 'tmux'}
     - {role: 'bat', tags: 'bat'}
     - {role: 'exa', tags: 'exa'}
-    - {role: 'i3', tags: 'i3'}
+      #    - {role: 'i3', tags: 'i3'}
 

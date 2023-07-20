@@ -1,0 +1,16 @@
+---
+go_deps:
+  - coreutils
+  - curl
+ruby_deps:
+  - gcc
+  - make
+  - bzip2
+  - libopenssl-devel
+  - libyaml-devel
+  - libffi-devel
+  - readline-devel
+  - zlib-devel
+  - gdbm-devel
+  - ncurses-devel
+
