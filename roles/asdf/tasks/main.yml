@@ -56,14 +56,17 @@
       - tool-versions
     depth: 1
     file_type: any
-  register: nvim_role_files
+  register: asdf_role_files
 
 - name: Symlink config
   file:
     src: "{{ item.path }}"
     dest: "~/.{{ item.path.split('/')[-1] }}"
     state: link
-  loop: "{{ nvim_role_files.files }}"
+  loop: "{{ asdf_role_files.files }}"
+
+- include_tasks:
+    file: roles/common/tasks/zsh-file-symlink.yml
 
 - name: install asdf plugins
   shell: "source ~/.zshrc && asdf plugin add {{ item.name }} {{ item.git }}"
