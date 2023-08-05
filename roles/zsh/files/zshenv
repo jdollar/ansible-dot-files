@@ -4,4 +4,5 @@ for pathdir in ${pathdirs[@]}; do
 done
 
 export EDITOR=$(which nvim)
+export XCURSOR_THEME=Adwaita
 

@@ -99,5 +99,8 @@ return require('packer').startup(function(use)
 
   -- Undotree
   use 'mbbill/undotree'
+
+  -- Github copilot
+  use 'github/copilot.vim'
 end
 )
