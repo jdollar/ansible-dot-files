@@ -15,5 +15,6 @@
     - {role: 'tmux', tags: 'tmux'}
     - {role: 'bat', tags: 'bat'}
     - {role: 'exa', tags: 'exa'}
+    - {role: 'golangci-lint', tags: 'golangci-lint'}
       #    - {role: 'i3', tags: 'i3'}
 

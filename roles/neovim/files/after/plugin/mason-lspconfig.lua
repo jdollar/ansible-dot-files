@@ -12,7 +12,13 @@ local servers = {
   -- Dockerfiles
   dockerls = {},
   -- Golang
-  gopls = {},
+  gopls = {
+    settings = {
+      gopls = {
+        buildFlags = { "-tags=testing" },
+      }
+    }
+  },
   -- PHP
   intelephense = {},
   -- JSON
@@ -59,7 +65,8 @@ for k, _ in pairs(servers) do
 end
 
 require('mason-lspconfig').setup {
-  ensure_installed = server_keys
+  ensure_installed = server_keys,
+  automatic_installation = true,
 }
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()

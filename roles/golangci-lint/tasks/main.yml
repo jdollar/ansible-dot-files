@@ -1,0 +1,14 @@
+---
+- name: find config files
+  find:
+    paths: "{{ role_path + '/files' }}"
+    depth: 1
+    file_type: file
+  register: config_files
+
+- name: Symlink config files
+  file:
+    src: "{{ item.path }}"
+    dest: "~/.{{ item.path.split('/')[-1] }}"
+    state: link
+  loop: "{{ config_files.files }}"

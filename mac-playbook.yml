@@ -16,4 +16,5 @@
     - {role: 'bat', tags: 'bat'}
     - {role: 'exa', tags: 'exa'}
     - {role: 'kubernetes', tags: 'kubernetes' }
+    - {role: 'golangci-lint', tags: 'golangci-lint'}
 
