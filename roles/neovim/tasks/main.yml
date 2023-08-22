@@ -1,6 +1,7 @@
 ---
-- name: Setup asdf task for OS
+- name: Setup neovim task for OS
   ansible.builtin.include_vars: "{{ lookup('ansible.builtin.first_found', params) }}"
+  ignore_errors: true
   vars:
     params:
       files:
@@ -10,14 +11,14 @@
         - 'vars'
 
 - name: install pre-reqs
-  become: true
+  become: "{{ become_to_install }}"
   when: package_prereq is defined and (package_prereq|length>0)
   ansible.builtin.package:
     name: "{{ package_prereq }}"
     state: present
 
 - name: install neovim
-  become: true
+  become: "{{ become_to_install }}"
   ansible.builtin.package:
     name: "{{ neovim_packages }}"
     state: present

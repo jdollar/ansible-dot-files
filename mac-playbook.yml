@@ -2,6 +2,7 @@
 - hosts: all
   vars:
     ansible_os_platform: "mac"
+    become_to_install: "false"
   roles:
     - {role: 'homebrew', tags: 'homebrew'}
     - {role: 'gpg', tags: 'gpg'}

@@ -1,6 +1,6 @@
 ---
 - name: install git
-  become: true
+  become: "{{ become_to_install }}"
   package:
     name: git
     state: latest

@@ -100,6 +100,12 @@ return require('packer').startup(function(use)
   -- Undotree
   use 'mbbill/undotree'
 
+  -- swagger previewer
+  use {
+    "vinnymeller/swagger-preview.nvim",
+    run = "npm install -g swagger-ui-watcher",
+  }
+
   -- Github copilot
   use 'github/copilot.vim'
 end

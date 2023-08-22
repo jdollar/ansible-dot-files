@@ -16,6 +16,7 @@ local servers = {
     settings = {
       gopls = {
         buildFlags = { "-tags=testing" },
+        gofumpt = true,
       }
     }
   },
