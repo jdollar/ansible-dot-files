@@ -106,7 +106,7 @@ return require('packer').startup(function(use)
     run = "npm install -g swagger-ui-watcher",
   }
 
-  -- Github copilot
-  use 'github/copilot.vim'
+  -- Github copilot alternative
+  use 'Exafunction/codeium.vim'
 end
 )
