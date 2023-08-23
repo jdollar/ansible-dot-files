@@ -12,6 +12,7 @@ local servers = {
   -- Dockerfiles
   dockerls = {},
   -- Golang
+  golangci_lint_ls = {},
   gopls = {
     settings = {
       gopls = {
@@ -131,3 +132,11 @@ for server, config in pairs(servers) do
 
   lspconfig[server].setup(server_config)
 end
+
+-- Run go imports on save
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = '*.go',
+  callback = function()
+    vim.lsp.buf.code_action({ context = { only = { 'source.organizeImports' } }, apply = true })
+  end
+})
