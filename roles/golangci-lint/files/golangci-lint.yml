@@ -1,2 +1,52 @@
+run:
+  build-tags:
+    - testing
+  modules-download-mode: readonly
 linters:
   enable-all: true
+  disable:
+    # makes sure tags of the same type are aligned with whitespace
+    # disabled until there is an autofix capability. Too much work to do manually
+    - tagalign
+    # Not limiting module importing
+    - depguard
+    # Don't think this aligns with situations where we are returning empty
+    # structs from situations like erros in functions. Might be nice for
+    # other situations, but has a large colateral
+    - exhaustruct
+
+    # archived/deprecated
+    - maligned
+    - golint
+    - interfacer
+    - ifshort
+    - nosnakecase
+    - scopelint
+    - deadcode
+    - exhaustivestruct
+    - structcheck
+    - varcheck
+linters-settings:
+  nlreturn:
+    # Making it so two line functions don't need to have a new line before the return
+    block-size: 2
+  varnamelen:
+    ignore-decls:
+      - cl *kgo.Client
+      - cl *kadm.Client
+      - db *sqlx.DB
+      - i int
+  exhaustive:
+    # When a default is present in a switch, we don't need to provide all possible combinations for the cases
+    default-signifies-exhaustive: true
+  wsl:
+    # allows multiple declarations to be cuddled together
+    allow-cuddle-declarations: true
+issues:
+  exclude-rules:
+    # Allow creating dynamic errors within test files
+    # More often than not, errors.Is is not going to be used there
+    # for the errors generated inside test files
+    - path: _test\.go
+      linters:
+        - goerr113
