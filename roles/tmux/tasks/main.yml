@@ -14,7 +14,7 @@
 - import_tasks: debian.yml
   when: ansible_facts['distribution'] == 'Debian'
 
-- import_tasks: debian.yml
+- import_tasks: opensuse_tumbleweed.yml
   when: ansible_facts['distribution'] == 'openSUSE Tumbleweed'
 
 - include_tasks:

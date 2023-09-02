@@ -1,0 +1,23 @@
+---
+- name: Register a variable, ignore errors and continue
+  ansible.builtin.command: pulumi version
+  register: has_pulumi
+  ignore_errors: true
+
+- name: Run only if the task that registered the "result" variable fails
+  get_url:
+    url: curl -fsSL https://get.pulumi.com
+    dest: /tmp/pulumi-installer.sh
+    mode: 'u+rwx'
+  when: has_pulumi is failed
+  register: download
+
+- name: Run the install script
+  become: true
+  shell: /tmp/pulumi-installer.sh
+  when: download.changed
+
+- name: Remove the pulumi-installer.sh
+  file:
+    path: /tmp/pulumi-installer.sh
+    state: absent

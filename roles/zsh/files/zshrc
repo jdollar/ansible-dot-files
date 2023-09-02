@@ -10,4 +10,3 @@ source $ZSH/oh-my-zsh.sh
 for file in $HOME/.config/zsh/alias.d/**/*(Nx); do source $file; done
 for file in $HOME/.config/zsh/zshrc.d/**/*(Nx); do source $file; done
 for file in $HOME/.config/zsh/env.d/**/*(Nx); do source $file; done
-

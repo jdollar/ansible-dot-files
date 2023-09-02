@@ -35,6 +35,9 @@ return require('packer').startup(function(use)
   use 'neovim/nvim-lspconfig'
   use 'hrsh7th/cmp-nvim-lsp'
 
+  -- needed for helm ls support
+  use 'towolf/vim-helm'
+
   -- Linter support
   use "jose-elias-alvarez/null-ls.nvim"
   use "jayp0521/mason-null-ls.nvim"

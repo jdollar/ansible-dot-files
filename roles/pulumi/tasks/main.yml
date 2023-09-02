@@ -1,0 +1,9 @@
+---
+- import_tasks: mac.yml
+  when: ansible_os_platform|lower == 'mac'
+
+- import_tasks: linux.yml
+  when: ansible_os_platform|lower != 'mac'
+
+- include_tasks:
+    file: roles/common/tasks/zsh-file-symlink.yml

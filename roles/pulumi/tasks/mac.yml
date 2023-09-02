@@ -1,0 +1,6 @@
+---
+- name: install pulumi
+  become: true
+  package:
+    name: pulumi/tap/pulumi
+    state: latest

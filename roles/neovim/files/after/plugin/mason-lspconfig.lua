@@ -21,6 +21,8 @@ local servers = {
       }
     }
   },
+  -- Helm
+  helm_ls = {},
   -- PHP
   intelephense = {},
   -- JSON
@@ -128,6 +130,18 @@ for server, config in pairs(servers) do
 
   for k, v in pairs(config) do
     server_config[k] = v
+  end
+
+  if server == 'yamlls' then
+    orig_on_attach = server_config.on_attach
+
+    -- Disable yamlls processing for helm files
+    server_config.on_attach = function(client, bufnr)
+      orig_on_attach(client, bufnr)
+      if vim.bo[bufnr].buftype ~= "" or vim.bo[bufnr].filetype == "helm" then
+        vim.diagnostic.disable()
+      end
+    end
   end
 
   lspconfig[server].setup(server_config)

@@ -17,5 +17,6 @@
     - {role: 'bat', tags: 'bat'}
     - {role: 'exa', tags: 'exa'}
     - {role: 'golangci-lint', tags: 'golangci-lint'}
+    - {role: 'pulumi', tags: 'pulumi'}
       #    - {role: 'i3', tags: 'i3'}
 
