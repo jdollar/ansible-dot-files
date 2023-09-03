@@ -133,7 +133,7 @@ for server, config in pairs(servers) do
   end
 
   if server == 'yamlls' then
-    orig_on_attach = server_config.on_attach
+    local orig_on_attach = server_config.on_attach
 
     -- Disable yamlls processing for helm files
     server_config.on_attach = function(client, bufnr)
