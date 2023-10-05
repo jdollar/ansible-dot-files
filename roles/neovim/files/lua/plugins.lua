@@ -82,8 +82,9 @@ return require('packer').startup(function(use)
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
   }
-  -- Module for treesitter, rainbow parans
-  use 'p00f/nvim-ts-rainbow'
+
+  -- rainbow delimiters
+  use 'https://gitlab.com/HiPhish/rainbow-delimiters.nvim.git'
 
   -- Indent guides
   use 'lukas-reineke/indent-blankline.nvim'

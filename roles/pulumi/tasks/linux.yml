@@ -6,7 +6,7 @@
 
 - name: Run only if the task that registered the "result" variable fails
   get_url:
-    url: curl -fsSL https://get.pulumi.com
+    url: https://get.pulumi.com
     dest: /tmp/pulumi-installer.sh
     mode: 'u+rwx'
   when: has_pulumi is failed
