@@ -1,8 +1,11 @@
 ---
-- name: install exa
+# exa unmaintained. Need to move to eza
+# zypper ar https://download.opensuse.org/tumbleweed/repo/oss/ factory-oss
+# zypper in eza
+- name: install eza
   become: true
   package:
-    name: exa
+    name: eza
     state: latest
 
 - include_tasks:

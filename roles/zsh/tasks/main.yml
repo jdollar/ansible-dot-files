@@ -50,3 +50,6 @@
     dest: "~/.{{ item.path.split('/')[-1] }}"
     state: link
   loop: "{{ zsh_role_home_files.files }}"
+
+# remove bad links
+# find -L /path -type l -exec rm -i {} \;
