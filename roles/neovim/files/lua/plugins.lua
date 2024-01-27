@@ -67,11 +67,20 @@ return require('packer').startup(function(use)
   use 'ray-x/lsp_signature.nvim'
 
   -- fuzzy file search/finder
+  -- use {
+  --   'junegunn/fzf',
+  --   run = function() vim.fn['fzf#install']() end,
+  -- }
+  -- use 'junegunn/fzf.vim'
+
   use {
-    'junegunn/fzf',
-    run = function() vim.fn['fzf#install']() end,
+    'nvim-telescope/telescope.nvim', tag = '0.1.5',
+    -- or                            , branch = '0.1.x',
+    requires = { { 'nvim-lua/plenary.nvim' } }
   }
-  use 'junegunn/fzf.vim'
+
+  -- use fzf for sorting telescope
+  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
   -- auto close brackets + parenthesis
   use 'windwp/nvim-autopairs'
