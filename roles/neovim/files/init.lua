@@ -1,5 +1,5 @@
 if not vim.g.vscode then
   require('jdollar.remap')
   require('jdollar.set')
-  require('jdollar.packer')
+  require('jdollar.lazy')
 end

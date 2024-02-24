@@ -15,7 +15,7 @@
     - {role: 'asdf', tags: 'asdf'}
     - {role: 'tmux', tags: 'tmux'}
     - {role: 'bat', tags: 'bat'}
-    - {role: 'exa', tags: 'exa'}
+    - {role: 'eza', tags: 'eza'}
     - {role: 'kubernetes', tags: 'kubernetes' }
     - {role: 'golangci-lint', tags: 'golangci-lint'}
 

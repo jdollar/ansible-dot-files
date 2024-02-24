@@ -1,70 +1,73 @@
-return require('packer').startup(function(use)
-  use { "wbthomason/packer.nvim", opt = true }
+require("lazy").setup({
+  {
+    "wbthomason/packer.nvim",
+    lazy = true
+  },
 
   -- allows reopening files with sudo
   -- or writing files with sudo
-  use 'lambdalisue/suda.vim'
+  'lambdalisue/suda.vim',
 
-  use {
+  {
     'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-  }
+    dependencies = { 'kyazdani42/nvim-web-devicons', lazy = true }
+  },
 
   -- colorscheme
-  use 'sainnhe/everforest'
+  'sainnhe/everforest',
 
   -- git functionality
-  use {
+  {
     'lewis6991/gitsigns.nvim',
-    requires = {
+    dependencies = {
       'nvim-lua/plenary.nvim'
     },
-  }
+  },
 
   -- enables use of .editorconfig files
-  use 'editorconfig/editorconfig-vim'
+  'editorconfig/editorconfig-vim',
 
   -- file explorer
-  use 'scrooloose/nerdtree'
+  'scrooloose/nerdtree',
   -- file icons
-  use 'ryanoasis/vim-devicons'
+  'ryanoasis/vim-devicons',
 
   -- language server support
-  use "williamboman/mason.nvim"
-  use "williamboman/mason-lspconfig.nvim"
-  use 'neovim/nvim-lspconfig'
-  use 'hrsh7th/cmp-nvim-lsp'
+  'williamboman/mason.nvim',
+  'williamboman/mason-lspconfig.nvim',
+  'neovim/nvim-lspconfig',
+  'hrsh7th/cmp-nvim-lsp',
 
   -- needed for helm ls support
-  use 'towolf/vim-helm'
+  'towolf/vim-helm',
 
   -- Linter support
-  use "jose-elias-alvarez/null-ls.nvim"
-  use "jayp0521/mason-null-ls.nvim"
+  'jose-elias-alvarez/null-ls.nvim',
+  'jayp0521/mason-null-ls.nvim',
 
   -- json schemas for language server
-  use "b0o/schemastore.nvim"
+  'b0o/schemastore.nvim',
 
   -- Snippet functionality
-  use { 'L3MON4D3/LuaSnip' }
-  use { 'saadparwaiz1/cmp_luasnip' }
+  'L3MON4D3/LuaSnip',
+  'saadparwaiz1/cmp_luasnip',
 
-  use {
+  {
     'hrsh7th/nvim-cmp',
-    requires = {
+    dependencies = {
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-cmdline',
       'hrsh7th/nvim-cmp',
       'hrsh7th/cmp-nvim-lsp'
     }
-  }
+  },
 
   -- Displays popup for keybind help
-  use 'folke/which-key.nvim'
+  'folke/which-key.nvim',
 
   -- Signature argument documentation
-  use 'ray-x/lsp_signature.nvim'
+  'ray-x/lsp_signature.nvim',
 
   -- fuzzy file search/finder
   -- use {
@@ -73,53 +76,53 @@ return require('packer').startup(function(use)
   -- }
   -- use 'junegunn/fzf.vim'
 
-  use {
-    'nvim-telescope/telescope.nvim', tag = '0.1.5',
+  {
+    'nvim-telescope/telescope.nvim',
+    version = '0.1.5',
     -- or                            , branch = '0.1.x',
-    requires = { { 'nvim-lua/plenary.nvim' } }
-  }
+    dependencies = { { 'nvim-lua/plenary.nvim' } }
+  },
 
   -- use fzf for sorting telescope
-  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+  { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
 
   -- auto close brackets + parenthesis
-  use 'windwp/nvim-autopairs'
+  'windwp/nvim-autopairs',
 
   -- Abstraction layer for nvim syntax highlighting
   -- Adds language parsers and max syntax pretty
-  use {
+  {
     'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate',
-  }
+    build = ':TSUpdate',
+  },
 
   -- rainbow delimiters
-  use 'https://gitlab.com/HiPhish/rainbow-delimiters.nvim.git'
+  'https://gitlab.com/HiPhish/rainbow-delimiters.nvim.git',
 
   -- Indent guides
-  use 'lukas-reineke/indent-blankline.nvim'
+  'lukas-reineke/indent-blankline.nvim',
 
   -- Facilitate generating doc blocks
-  use {
+  {
     'kkoomen/vim-doge',
-    run = ':call doge#install()'
-  }
+    build = ':call doge#install()'
+  },
 
   -- Display lsp errors better
-  use {
+  {
     "folke/trouble.nvim",
-    requires = "kyazdani42/nvim-web-devicons",
-  }
+    dependencies = "kyazdani42/nvim-web-devicons",
+  },
 
   -- Undotree
-  use 'mbbill/undotree'
+  'mbbill/undotree',
 
   -- swagger previewer
-  use {
+  {
     "vinnymeller/swagger-preview.nvim",
-    run = "npm install -g swagger-ui-watcher",
-  }
+    build = "npm install -g swagger-ui-watcher",
+  },
 
   -- Github copilot alternative
-  use 'Exafunction/codeium.vim'
-end
-)
+  'Exafunction/codeium.vim',
+})
