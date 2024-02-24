@@ -46,14 +46,6 @@
     state: link
   loop: "{{ nvim_role_files.files }}"
 
-- name: clean old packer compile
-  ansible.builtin.file:
-    path: ~/.config/nvim/plugin/packer_compiled.lua
-    state: absent
-
-- name: clean old plugins
-  shell: nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerClean'
-
-- name: Install plugins
-  shell: nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+- name: Install plugins, clean old, updates existing
+  shell: nvim --headless "+Lazy! sync" +qa
 
