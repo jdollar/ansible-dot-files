@@ -12,8 +12,8 @@
 
 - name: Symlink config
   file:
-    src: "{{ role_path }}/files/alacritty.yml"
-    dest: "~/.config/alacritty/alacritty.yml"
+    src: "{{ role_path }}/files/alacritty.toml"
+    dest: "~/.config/alacritty/alacritty.toml"
     state: link
 
 - name: Download term info
