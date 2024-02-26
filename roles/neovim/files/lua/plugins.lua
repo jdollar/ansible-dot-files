@@ -42,8 +42,8 @@ require("lazy").setup({
   'towolf/vim-helm',
 
   -- Linter support
-  'jose-elias-alvarez/null-ls.nvim',
-  'jayp0521/mason-null-ls.nvim',
+  "nvimtools/none-ls.nvim"
+  "jayp0521/mason-null-ls.nvim"
 
   -- json schemas for language server
   'b0o/schemastore.nvim',
@@ -97,7 +97,15 @@ require("lazy").setup({
   },
 
   -- rainbow delimiters
-  'https://gitlab.com/HiPhish/rainbow-delimiters.nvim.git',
+  'HiPhish/rainbow-delimiters.nvim'
+
+  -- Package to facilitate commenting out lines with hotkeys
+  {
+    "numToStr/Comment.nvim",
+    dependencies = {
+      "JoosepAlviste/nvim-ts-context-commentstring"
+    }
+  }
 
   -- Indent guides
   'lukas-reineke/indent-blankline.nvim',

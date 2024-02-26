@@ -57,7 +57,22 @@ local servers = {
   yamlls = {
     settings = {
       yaml = {
-        schemaStore = { enable = true },
+        schemaStore = { enable = false, url = "" },
+        schemas = require('schemastore').yaml.schemas {
+          replace = {
+            ['openapi.json'] = {
+              description = "A JSON schema for Open API documentation files",
+              fileMatch = { "openapi.json", "openapi.yml", "openapi.yaml", "swagger.yaml", "swagger.yml" },
+              name = "openapi.json",
+              url = "https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.1/schema.json",
+              versions = {
+                ["3.0"] = "https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.0/schema.json",
+                ["3.1"] = "https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.1/schema.json"
+              }
+            },
+          }
+        },
+        validate = { enable = true },
       },
     }
   },
@@ -146,11 +161,3 @@ for server, config in pairs(servers) do
 
   lspconfig[server].setup(server_config)
 end
-
--- Run go imports on save
-vim.api.nvim_create_autocmd('BufWritePre', {
-  pattern = '*.go',
-  callback = function()
-    vim.lsp.buf.code_action({ context = { only = { 'source.organizeImports' } }, apply = true })
-  end
-})
