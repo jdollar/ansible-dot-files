@@ -3,11 +3,10 @@
 # zypper ar https://download.opensuse.org/tumbleweed/repo/oss/ factory-oss
 # zypper in eza
 - name: install eza
-  become: true
+  become: false
   package:
     name: eza
     state: latest
 
 - include_tasks:
     file: roles/common/tasks/zsh-file-symlink.yml
-
