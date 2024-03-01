@@ -41,7 +41,7 @@
 
 - name: default personal config
   file:
-    src: "{{ role_path }}/files/gitconfig.personal"
+    src: "{{ role_path }}/files/gitconfig.work"
     dest: "~/.config/git/gitconfig.gpgconfig"
     state: link
 

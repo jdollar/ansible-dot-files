@@ -1,10 +1,9 @@
 ---
 - name: install bat
-  become: true
+  become: "{{ become_to_install }}"
   package:
     name: bat
     state: present
 
 - include_tasks:
     file: roles/common/tasks/zsh-file-symlink.yml
-

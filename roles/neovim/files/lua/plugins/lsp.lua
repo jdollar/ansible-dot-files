@@ -23,7 +23,7 @@ return {
         -- Dockerfiles
         dockerls = {},
         -- eslint
-        -- eslint = {},
+        eslint = {},
         -- Golang
         golangci_lint_ls = {},
         gopls = {
@@ -181,6 +181,20 @@ return {
             orig_on_attach(client, bufnr)
 
             client.server_capabilities.documentFormattingProvider = false
+          end
+        end
+
+        if server == "eslint" then
+          local orig_on_attach = server_config.on_attach
+
+          -- Disable yamlls processing for helm files
+          server_config.on_attach = function(client, bufnr)
+            orig_on_attach(client, bufnr)
+
+            vim.api.nvim_create_autocmd("BufWritePre", {
+              buffer = bufnr,
+              command = "EslintFixAll",
+            })
           end
         end
 
