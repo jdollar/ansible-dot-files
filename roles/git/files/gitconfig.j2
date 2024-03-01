@@ -1,8 +1,11 @@
 [include]
-        path = {{ home_dir}}/.config/git/.gitconfig.gpgconfig
+        path = {{ home_dir}}/.config/git/gitconfig.gpgconfig
 [core]
         excludesfile = {{ home_dir }}/.gitignore_global
         editor = nvim
+        pager = delta
+[interactive]
+        diffFilter = delta --color-only
 [commit]
         gpgsign = true
 [gpg]
@@ -14,3 +17,10 @@
         smudge = git-lfs smudge -- %f
         process = git-lfs filter-process
         required = true
+[delta]
+    navigate = true    # use n and N to move between diff sections
+    light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+    line-numbers = true
+    side-by-side = false
+[diff]
+    colorMoved = default

@@ -1,0 +1,6 @@
+---
+- name: install delta
+  become: true
+  package:
+    name: git-delta
+    state: present

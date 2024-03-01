@@ -54,7 +54,7 @@ return {
         end
       },
       mapping = {
-        ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs( -4), { 'i', 'c' }),
+        ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
         ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
         ['<C-e>'] = cmp.mapping({
           i = cmp.mapping.abort(),
@@ -79,6 +79,7 @@ return {
       sources = cmp.config.sources({
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
+        { name = 'codeium' },
       }, {
         { name = 'buffer' },
       })

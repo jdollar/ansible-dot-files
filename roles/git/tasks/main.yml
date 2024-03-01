@@ -10,13 +10,13 @@
 
 - import_tasks: linux.yml
   when: (ansible_facts['distribution'] == 'Fedora') or
-        (ansible_facts['distribution'] == 'Debian') or
-        (ansible_facts['distribution'] == 'openSUSE Tumbleweed')
+    (ansible_facts['distribution'] == 'Debian') or
+    (ansible_facts['distribution'] == 'openSUSE Tumbleweed')
 
 - name: Get HOME directory
   set_fact:
     home_dir: "{{ lookup('env', 'HOME') }}"
-      
+
 - name: determine gpg install location
   ansible.builtin.shell: which gpg
   register: which_gpg_command
@@ -50,3 +50,8 @@
     src: "{{ role_path }}/files/gitconfig.j2"
     dest: "~/.config/git/.gitconfig"
 
+- name: Symlink global config
+  file:
+    src: "~/.config/git/.gitconfig"
+    dest: "~/.gitconfig"
+    state: link
