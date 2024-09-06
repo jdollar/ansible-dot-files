@@ -42,12 +42,12 @@ return {
 
     cmp.setup({
       -- Setup icons on the autocomplete menu
-      formatting = {
-        format = function(_, vim_item)
-          vim_item.kind = (cmp_kinds[vim_item.kind] or '') .. vim_item.kind
-          return vim_item
-        end,
-      },
+      -- formatting = {
+      --   format = function(_, vim_item)
+      --     vim_item.kind = (cmp_kinds[vim_item.kind] or '') .. vim_item.kind
+      --     return vim_item
+      --   end,
+      -- },
       snippet = {
         expand = function(args)
           require 'luasnip'.lsp_expand(args.body)

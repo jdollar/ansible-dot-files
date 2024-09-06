@@ -29,7 +29,7 @@ return {
         gopls = {
           settings = {
             gopls = {
-              buildFlags = { "-tags=testing" },
+              buildFlags = { "-tags=testing,awsmock" },
               gofumpt = true,
             }
           }
