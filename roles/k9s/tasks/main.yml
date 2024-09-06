@@ -1,0 +1,38 @@
+---
+- name: Setup k9s task for OS
+  ansible.builtin.include_vars: "{{ lookup('ansible.builtin.first_found', params) }}"
+  ignore_errors: true
+  vars:
+    params:
+      files:
+        - "{{ansible_distribution|lower|replace(' ', '_')}}.yml"
+        - "{{ansible_os_platform|lower|replace(' ', '_')}}.yml"
+      paths:
+        - "vars"
+
+- name: install k9s
+  become: "{{ become_to_install }}"
+  package:
+    name: k9s
+    state: present
+
+- name: Create config directories
+  file:
+    path: "{{ item }}"
+    state: directory
+  loop:
+    - "{{ k9s_config_dir }}"
+
+- name: Symlink config
+  file:
+    src: "{{ role_path + '/files/config.yaml' }}"
+    dest: "{{ k9s_config_dir }}/config.yaml"
+    state: link
+
+- name: Download Everforest skin
+  get_url:
+    url: "https://raw.githubusercontent.com/derailed/k9s/master/skins/everforest-dark.yaml"
+    dest: "{{ k9s_config_dir }}/skins/everforest-dark.yaml"
+
+- include_tasks:
+    file: roles/common/tasks/zsh-file-symlink.yml

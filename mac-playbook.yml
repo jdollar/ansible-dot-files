@@ -4,18 +4,18 @@
     ansible_os_platform: "mac"
     become_to_install: "false"
   roles:
-    - {role: 'homebrew', tags: 'homebrew'}
-    - {role: 'gpg', tags: 'gpg'}
-    - {role: 'git', tags: 'git'}
-    - {role: 'fd', tags: 'fd'}
-    - {role: 'fzf', tags: 'fzf'}
-    - {role: 'ripgrep', tags: 'ripgrep'}
-    - {role: 'neovim', tags: 'neovim'}
-    - {role: 'alacritty', tags: 'alacritty'}
-    - {role: 'asdf', tags: 'asdf'}
-    - {role: 'tmux', tags: 'tmux'}
-    - {role: 'bat', tags: 'bat'}
-    - {role: 'eza', tags: 'eza'}
-    - {role: 'kubernetes', tags: 'kubernetes' }
-    - {role: 'golangci-lint', tags: 'golangci-lint'}
-
+    - { role: "homebrew", tags: "homebrew" }
+    - { role: "gpg", tags: "gpg" }
+    - { role: "git", tags: "git" }
+    - { role: "fd", tags: "fd" }
+    - { role: "fzf", tags: "fzf" }
+    - { role: "ripgrep", tags: "ripgrep" }
+    - { role: "neovim", tags: "neovim" }
+    - { role: "alacritty", tags: "alacritty" }
+    - { role: "asdf", tags: "asdf" }
+    - { role: "tmux", tags: "tmux" }
+    - { role: "bat", tags: "bat" }
+    - { role: "eza", tags: "eza" }
+    - { role: "kubernetes", tags: "kubernetes" }
+    - { role: "golangci-lint", tags: "golangci-lint" }
+    - { role: "k9s", tags: "k9s" }

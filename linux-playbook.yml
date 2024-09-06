@@ -4,19 +4,19 @@
     ansible_os_platform: "linux"
     become_to_install: "true"
   roles:
-    - {role: 'age', tags: 'age'}
-    - {role: 'gpg', tags: 'gpg'}
-    - {role: 'git', tags: 'git'}
-    - {role: 'fd', tags: 'fd'}
-    - {role: 'fzf', tags: 'fzf'}
-    - {role: 'ripgrep', tags: 'ripgrep'}
-    - {role: 'neovim', tags: 'neovim'}
-    - {role: 'alacritty', tags: 'alacritty'}
-    - {role: 'asdf', tags: 'asdf'}
-    - {role: 'tmux', tags: 'tmux'}
-    - {role: 'bat', tags: 'bat'}
-    - {role: 'eza', tags: 'eza'}
-    - {role: 'golangci-lint', tags: 'golangci-lint'}
-    - {role: 'pulumi', tags: 'pulumi'}
+    - { role: "age", tags: "age" }
+    - { role: "gpg", tags: "gpg" }
+    - { role: "git", tags: "git" }
+    - { role: "fd", tags: "fd" }
+    - { role: "fzf", tags: "fzf" }
+    - { role: "ripgrep", tags: "ripgrep" }
+    - { role: "neovim", tags: "neovim" }
+    - { role: "alacritty", tags: "alacritty" }
+    - { role: "asdf", tags: "asdf" }
+    - { role: "tmux", tags: "tmux" }
+    - { role: "bat", tags: "bat" }
+    - { role: "eza", tags: "eza" }
+    - { role: "golangci-lint", tags: "golangci-lint" }
+    - { role: "pulumi", tags: "pulumi" }
+    - { role: "k9s", tags: "k9s" }
       #    - {role: 'i3', tags: 'i3'}
-
