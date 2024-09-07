@@ -22,6 +22,7 @@
     state: directory
   loop:
     - "{{ k9s_config_dir }}"
+    - "{{ k9s_config_dir }}/skins"
 
 - name: Symlink config
   file:
