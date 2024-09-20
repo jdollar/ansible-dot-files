@@ -1,0 +1,6 @@
+---
+- name: install lazygit
+  become: "{{ become_to_install }}"
+  package:
+    name: lazygit
+    state: present

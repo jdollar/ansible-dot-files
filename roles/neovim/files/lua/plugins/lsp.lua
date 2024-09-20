@@ -63,7 +63,7 @@ return {
         -- Terraform
         tflint = {},
         -- Javascript
-        tsserver = {},
+        ts_ls = {},
         -- Vimscript
         vimls = {},
         -- yaml
@@ -174,7 +174,7 @@ return {
           end
         end
 
-        if server == "tsserver" then
+        if server == "ts_ls" then
           local orig_on_attach = server_config.on_attach
 
           server_config.on_attach = function(client, bufnr)

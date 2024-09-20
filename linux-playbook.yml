@@ -10,6 +10,7 @@
     - { role: "fd", tags: "fd" }
     - { role: "fzf", tags: "fzf" }
     - { role: "ripgrep", tags: "ripgrep" }
+    - { role: "lazygit", tags: "lazygit" }
     - { role: "neovim", tags: "neovim" }
     - { role: "alacritty", tags: "alacritty" }
     - { role: "asdf", tags: "asdf" }

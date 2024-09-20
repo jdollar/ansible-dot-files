@@ -3,4 +3,4 @@ dependencies:
   - { role: zsh }
   - { role: git }
   - { role: golangci-lint }
-
+  - { role: lazygit }
