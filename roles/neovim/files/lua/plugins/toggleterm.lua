@@ -39,6 +39,29 @@ return {
       end
 
       vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
+
+      local k9s = Terminal:new({
+        cmd = "k9s",
+        direction = "float",
+        float_opts = {
+          border = "double",
+        },
+        close_on_exit = true,
+        -- function to run on opening the terminal
+        on_open = function(term)
+          vim.cmd("startinsert!")
+        end,
+        -- function to run on closing the terminal
+        on_close = function(term)
+          vim.cmd("startinsert!")
+        end,
+      })
+
+      function _k9s_toggle()
+        k9s:toggle()
+      end
+
+      vim.api.nvim_set_keymap("n", "<leader>9", "<cmd>lua _k9s_toggle()<CR>", { noremap = true, silent = true })
     end
   }
 }
