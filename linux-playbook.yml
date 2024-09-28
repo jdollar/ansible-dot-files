@@ -4,6 +4,7 @@
     ansible_os_platform: "linux"
     become_to_install: "true"
   roles:
+    - { role: "zsh", tags: "zsh" }
     - { role: "age", tags: "age" }
     - { role: "gpg", tags: "gpg" }
     - { role: "git", tags: "git" }

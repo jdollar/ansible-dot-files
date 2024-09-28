@@ -32,14 +32,18 @@
     - plugins.d
     - zshrc.d
 
+- include_tasks:
+    file: roles/common/tasks/zsh-file-symlink.yml
+
 - name: find role home files
   find:
     paths: "{{ role_path + '/files' }}"
-    patterns: 
+    patterns:
       - zshrc
       - zprofile
       - zlogin
       - zshenv
+      - p10k.zsh
     depth: 1
     file_type: file
   register: zsh_role_home_files
@@ -50,6 +54,5 @@
     dest: "~/.{{ item.path.split('/')[-1] }}"
     state: link
   loop: "{{ zsh_role_home_files.files }}"
-
 # remove bad links
 # find -L /path -type l -exec rm -i {} \;
