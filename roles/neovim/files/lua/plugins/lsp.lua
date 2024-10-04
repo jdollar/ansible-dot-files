@@ -34,6 +34,8 @@ return {
             }
           }
         },
+        -- Grammer
+        harper_ls = {},
         -- Helm
         helm_ls = {},
         -- PHP
