@@ -24,11 +24,14 @@
     - "{{ k9s_config_dir }}"
     - "{{ k9s_config_dir }}/skins"
 
-- name: Symlink config
+- name: Symlink configs
   file:
-    src: "{{ role_path + '/files/config.yaml' }}"
-    dest: "{{ k9s_config_dir }}/config.yaml"
+    src: "{{ role_path + '/files/' + item }}"
+    dest: "{{ k9s_config_dir }}/{{ item }}"
     state: link
+  loop:
+    - "config.yaml"
+    - "plugins.yaml"
 
 - name: Download Everforest skin
   get_url:

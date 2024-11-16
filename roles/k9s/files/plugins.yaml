@@ -1,0 +1,94 @@
+plugins:
+  logs-jq-less: # parses the logs through jq for readability before sending them to less (does not follow)
+    shortCut: Ctrl-J
+    confirm: false
+    description: "logs|jq|less"
+    scopes:
+      - po
+    command: bash
+    background: false
+    args:
+      - -c
+      - '"$@" | jq --color-output "fromjson?" | less -R'
+      - dummy-arg
+      - kubectl
+      - logs
+      - --tail
+      - $NAME
+      - -n
+      - $NAMESPACE
+      - --context
+      - $CONTEXT
+      - --kubeconfig
+      - $KUBECONFIG
+  jqlogs:
+    shortCut: Ctrl-J
+    confirm: false
+    description: "Logs (jq)"
+    scopes:
+      - container
+    command: sh
+    background: false
+    args:
+      - -c
+      - '"$@" | jq -SR --color-output "fromjson?" | less -R'
+      - dummy-arg
+      - kubectl
+      - logs
+      - -f
+      - --tail=5000
+      - pod/$POD
+      - -c
+      - $NAME
+      - -n
+      - $NAMESPACE
+      - --context
+      - $CONTEXT
+      - --kubeconfig
+      - $KUBECONFIG
+  jqlogsd:
+    shortCut: Ctrl-J
+    confirm: false
+    description: "Logs (jq)"
+    scopes:
+      - deployment
+    command: sh
+    background: false
+    args:
+      - -c
+      - '"$@" | jq -SR --color-output "fromjson?" | less -R'
+      - dummy-arg
+      - kubectl
+      - logs
+      - -f
+      - --tail=5000
+      - deployment/$NAME
+      - -n
+      - $NAMESPACE
+      - --context
+      - $CONTEXT
+      - --kubeconfig
+      - $KUBECONFIG
+  jqlogss:
+    shortCut: Ctrl-J
+    confirm: false
+    description: "Logs (jq)"
+    scopes:
+      - service
+    command: sh
+    background: false
+    args:
+      - -c
+      - '"$@" | jq -SR --color-output "fromjson?" | less -R'
+      - dummy-arg
+      - kubectl
+      - logs
+      - -f
+      - --tail=5000
+      - service/$NAME
+      - -n
+      - $NAMESPACE
+      - --context
+      - $CONTEXT
+      - --kubeconfig
+      - $KUBECONFIG
