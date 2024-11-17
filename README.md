@@ -1,7 +1,5 @@
 ## Ansible Local Environment Setup
 
-test
-
 Ansible installation:
 
 ```shell
