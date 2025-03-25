@@ -1,7 +1,7 @@
 -- language server support
 return {
   'williamboman/mason.nvim',
-  'neovim/nvim-lspconfig',
+  { 'neovim/nvim-lspconfig', version = "v1.0.0" },
   'hrsh7th/cmp-nvim-lsp',
   -- Signature argument documentation
   'ray-x/lsp_signature.nvim',
@@ -20,16 +20,20 @@ return {
         ansiblels = {},
         -- Bash
         bashls = {},
+        -- Cucumber
+        cucumber_language_server = {},
         -- Dockerfiles
         dockerls = {},
         -- eslint
         eslint = {},
         -- Golang
-        golangci_lint_ls = {},
+        golangci_lint_ls = {
+          root_dir = lspconfig.util.root_pattern(".git", "go.mod")
+        },
         gopls = {
           settings = {
             gopls = {
-              buildFlags = { "-tags=testing,awsmock" },
+              buildFlags = { "-tags=testing,awsmock,generator" },
               gofumpt = true,
             }
           }
@@ -186,12 +190,23 @@ return {
           end
         end
 
+        if server == "intelephense" then
+          local orig_on_attach = server_config.on_attach
+
+          server_config.on_attach = function(client, bufnr)
+            orig_on_attach(client, bufnr)
+
+            client.server_capabilities.documentFormattingProvider = false
+          end
+        end
+
         if server == "eslint" then
           local orig_on_attach = server_config.on_attach
 
-          -- Disable yamlls processing for helm files
           server_config.on_attach = function(client, bufnr)
             orig_on_attach(client, bufnr)
+
+            client.server_capabilities.documentFormattingProvider = false
 
             vim.api.nvim_create_autocmd("BufWritePre", {
               buffer = bufnr,

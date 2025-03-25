@@ -1,7 +1,6 @@
 run:
   build-tags:
     - testing
-    - generator
   modules-download-mode: readonly
 linters:
   enable-all: true
@@ -16,23 +15,17 @@ linters:
     # other situations, but has a large colateral
     - exhaustruct
 
-    # I tend to make long names
-    - lll
-
-    # Replaced by others
-    - gomnd
-    - exportloopref
-
     # archived/deprecated
-    - execinquery
+    - maligned
+    - interfacer
+    - ifshort
+    - nosnakecase
+    - scopelint
+    - deadcode
+    - exhaustivestruct
+    - structcheck
+    - varcheck
 linters-settings:
-  revive:
-    enable-all-rules: true
-    confidence: 0.1
-    rules:
-      # Disabling line length limit just because I'm long winded and we got wide monitors
-      - name: line-length-limit
-        disabled: true
   nlreturn:
     # Making it so two line functions don't need to have a new line before the return
     block-size: 2
@@ -42,7 +35,6 @@ linters-settings:
       - cl *kadm.Client
       - db *sqlx.DB
       - i int
-      - cp config.ConfigProvider
   exhaustive:
     # When a default is present in a switch, we don't need to provide all possible combinations for the cases
     default-signifies-exhaustive: true
