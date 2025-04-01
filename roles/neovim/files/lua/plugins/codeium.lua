@@ -1,5 +1,6 @@
 return {
   'tzachar/cmp-ai',
+  enabled = false,
   dependencies = { 'nvim-lua/plenary.nvim' },
   config = function()
     local cmp_ai = require('cmp_ai.config')
