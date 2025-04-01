@@ -405,8 +405,6 @@ chars = "\u001B|"
 key = "Backslash"
 mods = "Alt|Shift"
 
-[terminal]
-
-[terminal.shell]
+[shell]
 args = ["--login"]
 program = "/bin/zsh"
