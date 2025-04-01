@@ -10,11 +10,17 @@
       paths:
         - "vars"
 
+- import_tasks: debian.yml
+  when: (ansible_facts['distribution'] == 'Ubuntu') or
+    (ansible_facts['distribution'] == 'Debian')
+
 - name: install k9s
   become: "{{ become_to_install }}"
   package:
     name: k9s
     state: present
+  when: not ((ansible_facts['distribution'] == 'Ubuntu') or
+    (ansible_facts['distribution'] == 'Debian'))
 
 - name: Create config directories
   file:

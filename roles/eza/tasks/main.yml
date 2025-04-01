@@ -3,7 +3,7 @@
 # zypper ar https://download.opensuse.org/tumbleweed/repo/oss/ factory-oss
 # zypper in eza
 - name: install eza
-  become: false
+  become: "{{ become_to_install }}"
   package:
     name: eza
     state: latest

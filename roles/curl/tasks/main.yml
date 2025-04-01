@@ -1,0 +1,7 @@
+---
+- name: install curl
+  become: "{{ become_to_install }}"
+  package:
+    name: curl
+    state: present
+
