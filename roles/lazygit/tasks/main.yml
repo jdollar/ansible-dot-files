@@ -1,6 +1,12 @@
 ---
+- import_tasks: debian.yml
+  when: (ansible_facts['distribution'] == 'Ubuntu') or
+    (ansible_facts['distribution'] == 'Debian')
+
 - name: install lazygit
   become: "{{ become_to_install }}"
   package:
     name: lazygit
     state: present
+  when: not ((ansible_facts['distribution'] == 'Ubuntu') or
+    (ansible_facts['distribution'] == 'Debian'))
