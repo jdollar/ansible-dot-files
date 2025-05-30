@@ -1,7 +1,7 @@
 -- language server support
 return {
   'williamboman/mason.nvim',
-  { 'neovim/nvim-lspconfig', version = "v1.0.0" },
+  { 'neovim/nvim-lspconfig', version = "v2.1.0" },
   'hrsh7th/cmp-nvim-lsp',
   -- Signature argument documentation
   'ray-x/lsp_signature.nvim',
@@ -20,6 +20,8 @@ return {
         ansiblels = {},
         -- Bash
         bashls = {},
+        -- C
+        clangd = {},
         -- Cucumber
         cucumber_language_server = {},
         -- Dockerfiles
@@ -28,7 +30,10 @@ return {
         eslint = {},
         -- Golang
         golangci_lint_ls = {
-          root_dir = lspconfig.util.root_pattern(".git", "go.mod")
+          root_dir = lspconfig.util.root_pattern("go.mod"),
+          init_options = {
+            command = { "golangci-lint", "run", "--output.json.path", "stdout", "--show-stats=false", "--issues-exit-code=1" }
+          }
         },
         gopls = {
           settings = {
@@ -53,6 +58,8 @@ return {
             },
           }
         },
+        -- Java
+        jdtls = {},
         -- Python
         pyright = {},
         -- Rust
@@ -159,6 +166,10 @@ return {
       end
 
       for server, config in pairs(servers) do
+        if server == "jdtls" then
+          goto continue
+        end
+
         local server_config = {
           on_attach = on_attach,
           capabilities = capabilities
@@ -216,6 +227,7 @@ return {
         end
 
         lspconfig[server].setup(server_config)
+        ::continue::
       end
     end
   }

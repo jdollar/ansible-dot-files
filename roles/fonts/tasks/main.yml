@@ -12,7 +12,7 @@
 - import_tasks: fedora.yml
   when: ansible_facts['distribution'] == 'Fedora'
 
-- name: make Hack Nerd Font directory 
+- name: make Hack Nerd Font directory
   file:
     path: "{{ fonts_dir }}/nerd-fonts/Hack"
     state: directory
@@ -27,14 +27,14 @@
     url: "{{ item.url }}"
     dest: "{{ fonts_dir }}/nerd-fonts/Hack/{{ item.fileName }}"
   loop:
-    - fileName: 'hackRegularNerdFontCompleteMono.ttf'
-      url: 'https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Hack/Regular/HackNerdFontMono-Regular.ttf?raw=true'
-    - fileName: 'hackItalicNerdFontCompleteMono.ttf'
-      url: 'https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Hack/Italic/HackNerdFontMono-Italic.ttf?raw=true'
-    - fileName: 'hackBoldItalicNerdFontCompleteMono.ttf'
-      url: 'https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Hack/BoldItalic/HackNerdFontMono-BoldItalic.ttf?raw=true'
-    - fileName: 'hackBoldNerdFontCompleteMono.ttf'
-      url: 'https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Hack/Bold/HackNerdFontMono-Bold.ttf?raw=true'
+    - fileName: "hackRegularNerdFontCompleteMono.ttf"
+      url: "https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Hack/Regular/HackNerdFontMono-Regular.ttf?raw=true"
+    - fileName: "hackItalicNerdFontCompleteMono.ttf"
+      url: "https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Hack/Italic/HackNerdFontMono-Italic.ttf?raw=true"
+    - fileName: "hackBoldItalicNerdFontCompleteMono.ttf"
+      url: "https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Hack/BoldItalic/HackNerdFontMono-BoldItalic.ttf?raw=true"
+    - fileName: "hackBoldNerdFontCompleteMono.ttf"
+      url: "https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Hack/Bold/HackNerdFontMono-Bold.ttf?raw=true"
 
 - name: Download Nerd Fonts config
   get_url:
@@ -44,4 +44,3 @@
 - name: update fc cache
   become: true
   command: fc-cache -rv
-

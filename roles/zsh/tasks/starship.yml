@@ -1,0 +1,40 @@
+---
+- name: Pull starship install script
+  get_url:
+    url: https://starship.rs/install.sh
+    dest: /tmp/starship-install.sh
+  become: true
+
+- name: install starship
+  shell: /bin/sh /tmp/starship-install.sh -y
+
+# Not yet available. Use installer script until ubuntu 25
+#- name: install zsh
+#  become: "{{ become_to_install }}"
+#  package:
+#    name: starship
+#    state: present
+
+- name: create config folders
+  file:
+    path: "~/.config/{{ item }}"
+    state: directory
+  loop:
+    - starship
+
+- name: find role home files
+  find:
+    paths: "{{ role_path + '/files/starship' }}"
+    depth: 1
+    file_type: file
+  register: starship_config_files
+
+- name: Symlink home files
+  file:
+    src: "{{ item.path }}"
+    dest: "~/.config/starship/{{ item.path.split('/')[-1] }}"
+    state: link
+  loop: "{{ starship_config_files.files }}"
+
+- include_tasks:
+    file: roles/common/tasks/zsh-file-symlink.yml

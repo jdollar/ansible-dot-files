@@ -10,6 +10,9 @@ return {
     local null_ls = require 'null-ls'
 
     null_ls.setup({
+      methos = {
+        formatting = false,
+      },
       sources = {
         null_ls.builtins.formatting.phpcsfixer,
         -- null_ls.builtins.code_actions.eslint, says to use eslint_language_server

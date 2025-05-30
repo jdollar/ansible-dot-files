@@ -1,7 +1,7 @@
-pathdirs=($HOME/.local/bin $HOME/.cargo/bin /usr/local/bin)
-for pathdir in ${pathdirs[@]}; do
-  [ -d ${pathdir} ] && export PATH=${pathdir}:$PATH
-done
+#pathdirs=($HOME/.local/bin $HOME/.cargo/bin /usr/local/bin)
+#for pathdir in ${pathdirs[@]}; do
+#  [ -d ${pathdir} ] && export PATH=${pathdir}:$PATH
+#done
 
 export EDITOR=$(which nvim)
 export XCURSOR_THEME=Adwaita
