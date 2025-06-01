@@ -147,59 +147,26 @@ return {
       vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>cI', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
     end
 
+    vim.api.nvim_create_autocmd('LspAttach', {
+      callback = function(ev)
+        local client = vim.lsp.get_client_by_id(ev.data.client_id)
 
-    for server, config in pairs(servers) do
-      if server == "jdtls" then
-        goto continue
-      end
-
-      local server_config = {
-        on_attach = on_attach,
-        capabilities = capabilities
-      }
-
-      for k, v in pairs(config) do
-        server_config[k] = v
-      end
-
-      if server == 'yamlls' then
-        local orig_on_attach = server_config.on_attach
-
-        -- Disable yamlls processing for helm files
-        server_config.on_attach = function(client, bufnr)
-          orig_on_attach(client, bufnr)
+        if server == 'yamlls' then
+          -- Disable yamlls processing for helm files
           if vim.bo[bufnr].buftype ~= "" or vim.bo[bufnr].filetype == "helm" then
             vim.diagnostic.disable()
           end
         end
-      end
 
-      if server == "ts_ls" then
-        local orig_on_attach = server_config.on_attach
+        if server == "ts_ls" then
+            client.server_capabilities.documentFormattingProvider = false
+        end
 
-        server_config.on_attach = function(client, bufnr)
-          orig_on_attach(client, bufnr)
-
+        if server == "intelephense" then
           client.server_capabilities.documentFormattingProvider = false
         end
-      end
 
-      if server == "intelephense" then
-        local orig_on_attach = server_config.on_attach
-
-        server_config.on_attach = function(client, bufnr)
-          orig_on_attach(client, bufnr)
-
-          client.server_capabilities.documentFormattingProvider = false
-        end
-      end
-
-      if server == "eslint" then
-        local orig_on_attach = server_config.on_attach
-
-        server_config.on_attach = function(client, bufnr)
-          orig_on_attach(client, bufnr)
-
+        if server == "eslint" then
           client.server_capabilities.documentFormattingProvider = false
 
           vim.api.nvim_create_autocmd("BufWritePre", {
@@ -207,9 +174,21 @@ return {
             command = "EslintFixAll",
           })
         end
+
+        on_attach(client, ev.buf)
+      end,
+    })
+
+    for server, config in pairs(servers) do
+      if server == "jdtls" then
+        goto continue
       end
 
-      vim.lsp.config(server, config)
+      local server_config = {
+        capabilities = capabilities
+      }
+
+      vim.lsp.config(server, server_config)
       ::continue::
     end
   end
