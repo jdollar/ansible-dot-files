@@ -1,0 +1,37 @@
+---
+- name: install emacs
+  become: "{{ become_to_install }}"
+  package:
+    name: emacs
+    state: present
+
+- name: Clone doom emacs
+  ansible.builtin.git:
+    repo: https://github.com/doomemacs/doomemacs
+    dest: ~/.config/emacs
+    depth: 1
+
+- name: Create config directory
+  file:
+    path: "~/.config/doom"
+    state: directory
+
+- name: find
+  find:
+    paths: "{{ role_path + '/files/doom' }}"
+    depth: 1
+    file_type: any
+  register: emacs_role_files
+
+- name: Symlink config
+  file:
+    src: "{{ item.path }}"
+    dest: "~/.config/doom/{{ item.path.split('/')[-1] }}"
+    state: link
+  loop: "{{ emacs_role_files.files }}"
+
+- include_tasks:
+    file: roles/common/tasks/zsh-file-symlink.yml
+
+- name: Sync doom emacs config
+  shell: ~/.config/emacs/bin/doom sync

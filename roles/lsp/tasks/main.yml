@@ -1,0 +1,3 @@
+---
+- name: install gopls
+  shell: go install golang.org/x/tools/gopls@latest

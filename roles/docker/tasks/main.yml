@@ -1,0 +1,13 @@
+---
+- name: install docker
+  become: "{{ become_to_install }}"
+  package:
+    name: docker
+    state: present
+
+- name: install docker-desktop
+  when: ansible_os_platform|lower == 'mac'
+  become: "{{ become_to_install }}"
+  package:
+    name: docker-desktop
+    state: present

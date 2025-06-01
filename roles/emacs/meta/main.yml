@@ -1,0 +1,7 @@
+---
+dependencies:
+  - { role: zsh }
+  - { role: git }
+  - { role: ripgrep }
+  - { role: asdf }
+  - { role: lsp }
