@@ -22,6 +22,11 @@ return {
       eslint = {},
       -- Golang
       golangci_lint_ls = {
+        root_markers = {
+          '.golangci.yml',
+          '.golangci.yaml',
+          'go.mod',
+        },
         init_options = {
           command = { "golangci-lint", "run", "--output.json.path", "stdout", "--show-stats=false", "--issues-exit-code=1" }
         }
@@ -144,7 +149,7 @@ return {
       vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
       vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
       vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-      vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>cI', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+      vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>cI', '<cmd>lua vim.lsp.buf.format()<CR>', opts)
     end
 
     vim.api.nvim_create_autocmd('LspAttach', {
@@ -175,6 +180,15 @@ return {
           })
         end
 
+        if not client:supports_method('textDocument/willSaveWaitUntil') and client:supports_method('textDocument/formatting') then
+          vim.api.nvim_create_autocmd('BufWritePre', {
+            buffer = ev.buf,
+            callback = function()
+              vim.lsp.buf.format({ bufnr = ev.buf, id = client.id, timeout_ms = 1000 })
+            end,
+          })
+        end
+
         on_attach(client, ev.buf)
       end,
     })
@@ -184,11 +198,9 @@ return {
         goto continue
       end
 
-      local server_config = {
-        capabilities = capabilities
-      }
+      config.capabilities = capabilities
 
-      vim.lsp.config(server, server_config)
+      vim.lsp.config(server, config)
       ::continue::
     end
   end
