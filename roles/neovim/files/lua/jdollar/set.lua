@@ -22,3 +22,5 @@ vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 
 vim.opt.autoindent = true
+
+vim.opt.encoding = 'utf-8'

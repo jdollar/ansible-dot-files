@@ -38,7 +38,7 @@
 
 - name: Download Nerd Fonts config
   get_url:
-    url: https://github.com/ryanoasis/nerd-fonts/blob/master/10-nerd-font-symbols.conf
+    url: https://raw.githubusercontent.com/ryanoasis/nerd-fonts/refs/heads/master/10-nerd-font-symbols.conf
     dest: ~/.config/fontconfig/conf.d/10-nerd-font-symbols.conf
 
 - name: update fc cache

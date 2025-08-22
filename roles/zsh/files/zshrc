@@ -37,6 +37,4 @@ bindkey "^[[B" down-line-or-beginning-search # Down
 export PATH="/usr/local/opt/php@7.4/bin:$PATH"
 export PATH="/usr/local/opt/php@7.4/sbin:$PATH"
 
-. "$HOME/.local/bin/env"
-
 eval "$(starship init zsh)"

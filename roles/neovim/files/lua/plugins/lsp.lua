@@ -2,7 +2,7 @@
 return {
   'williamboman/mason-lspconfig.nvim',
   dependencies = {
-    {'mason.nvim', opts = {}},
+    { 'mason.nvim', opts = {} },
     "neovim/nvim-lspconfig",
     'hrsh7th/cmp-nvim-lsp',
     -- Signature argument documentation
@@ -41,6 +41,9 @@ return {
       },
       -- Grammer
       harper_ls = {},
+      -- Latex
+      ltex = {},
+      texlab = {},
       -- Helm
       helm_ls = {},
       -- PHP
@@ -108,8 +111,8 @@ return {
     end
 
     require("mason-lspconfig").setup {
-      ensure_installed = server_keys,
-      automatic_installation  = true,
+      ensure_installed       = server_keys,
+      automatic_installation = true,
     }
 
     local lsp_signature = require("lsp_signature")
@@ -164,7 +167,7 @@ return {
         end
 
         if server == "ts_ls" then
-            client.server_capabilities.documentFormattingProvider = false
+          client.server_capabilities.documentFormattingProvider = false
         end
 
         if server == "intelephense" then
