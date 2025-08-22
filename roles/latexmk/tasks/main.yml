@@ -1,0 +1,6 @@
+---
+- name: install latexmk
+  become: true
+  package:
+    name: latexmk
+    state: present

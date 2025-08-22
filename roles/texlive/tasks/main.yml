@@ -2,5 +2,21 @@
 - name: install texlive
   become: true
   package:
-    name: texlive
+    name:
+      - texlive
+      - texlive-latex-extra
+      - texlive-xetex
     state: present
+
+- name: find
+  find:
+    paths: "{{ role_path + '/files/doom' }}"
+    depth: 1
+    file_type: any
+  register: emacs_role_files
+
+- name: Symlink config
+  file:
+    src: "{{ role_path + '/files/latexmkrc' }}"
+    dest: "~/.latexmkrc"
+    state: link

@@ -1,4 +1,4 @@
 ---
 dependencies:
-  - { role: tectonic }
+  - { role: latexmk }
   - { role: zathura }

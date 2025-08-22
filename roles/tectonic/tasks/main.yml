@@ -1,0 +1,16 @@
+---
+- name: Check if tectonic already installed
+  stat:
+    path: "/usr/local/bin/tectonic"
+  register: already_installed
+
+- name: Pull tectonic install script
+  get_url:
+    url: https://drop-sh.fullyjustified.net
+    dest: /tmp/tectonic-install.sh
+  become: true
+  when: not already_installed.stat.exists
+
+- name: install tectonic
+  shell: /bin/sh /tmp/tectonic-install.sh
+  when: not already_installed.stat.exists
