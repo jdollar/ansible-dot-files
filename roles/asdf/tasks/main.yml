@@ -32,14 +32,15 @@
 
 - name: Download asdf
   get_url:
-    url: "https://github.com/asdf-vm/asdf/releases/download/v0.17.0/asdf-v0.17.0-linux-arm64.tar.gz"
-    dest: "/tmp/asdf-linux-arm64.tar.gz"
+    url: "https://github.com/asdf-vm/asdf/releases/download/v0.17.0/asdf-v0.17.0-linux-amd64.tar.gz"
+    dest: "/tmp/asdf-linux-amd64.tar.gz"
 
 - name: Install asdf
   become: true
   ansible.builtin.shell: |
-    tar xf /tmp/asdf-linux-arm64.tar.gz -C /tmp asdf
-    install /tmp/asdf -D -t ~/.asdf/bin
+    tar xf /tmp/asdf-linux-amd64.tar.gz -C /tmp asdf
+    mkdir -p /home/jdollar/.asdf/bin
+    cp /tmp/asdf /home/jdollar/.asdf/bin/asdf
 
 - name: create zshrc.d directory if it doesn't exist
   ansible.builtin.file:

@@ -1,0 +1,6 @@
+---
+- name: install zathura
+  become: true
+  package:
+    name: zathura
+    state: present

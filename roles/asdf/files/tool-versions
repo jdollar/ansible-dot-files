@@ -6,3 +6,5 @@ ruby 3.1.1
 rust 1.59.0
 kubectl 1.27.1
 helm 3.11.3
+terraform 1.12.2
+java openjdk-21.0.2

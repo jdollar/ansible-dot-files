@@ -1,0 +1,6 @@
+---
+- name: install texlive
+  become: true
+  package:
+    name: texlive
+    state: present
