@@ -91,6 +91,7 @@
         git: "https://github.com/asdf-community/asdf-kubectl.git",
       }
     - { name: "helm", git: "https://github.com/Antiarchitect/asdf-helm.git" }
+    - { name: "maven", git: "https://github.com/halcyon/asdf-maven" }
 
 - name: install globally defined tool versions
   shell: source ~/.zshrc && asdf install
