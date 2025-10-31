@@ -25,6 +25,8 @@ return {
         root_markers = {
           '.golangci.yml',
           '.golangci.yaml',
+          '.golangci-lint.yaml',
+          '.golangci-lint.yml',
           'go.mod',
         },
         init_options = {
@@ -34,7 +36,7 @@ return {
       gopls = {
         settings = {
           ['gopls'] = {
-            buildFlags = { "-tags=testing,awsmock,generator" },
+            buildFlags = { "-tags=testing,awsmock,generator,integration,benchmark" },
             gofumpt = true,
           }
         }

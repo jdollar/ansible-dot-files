@@ -2,7 +2,8 @@ return {
   { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
   {
     'nvim-telescope/telescope.nvim',
-    version = '0.1.5',
+    branch = 'master',
+    --version = '0.1.5',
     -- or                            , branch = '0.1.x',
     dependencies = {
       { 'nvim-lua/plenary.nvim' },
