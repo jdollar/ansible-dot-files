@@ -1,6 +1,16 @@
 ---
+- name: Setup latexmk task for OS
+  ansible.builtin.include_vars: "{{ lookup('ansible.builtin.first_found', params) }}"
+  vars:
+    params:
+      files:
+        - "{{ansible_distribution|lower|replace(' ', '_')}}.yml"
+        - "{{ansible_os_platform|lower|replace(' ', '_')}}.yml"
+      paths:
+        - "vars"
+
 - name: install latexmk
   become: true
   package:
-    name: latexmk
-    state: present
+    name: "{{ packages }}"
+    state: latest

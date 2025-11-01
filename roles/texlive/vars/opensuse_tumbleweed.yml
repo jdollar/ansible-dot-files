@@ -1,0 +1,6 @@
+---
+packages:
+  - texlive
+  - texlive-xetex
+  - texlive-silence
+  - texlive-biblatex-chicago

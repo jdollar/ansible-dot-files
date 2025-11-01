@@ -1,19 +1,19 @@
 ---
+- name: Setup latexmk task for OS
+  ansible.builtin.include_vars: "{{ lookup('ansible.builtin.first_found', params) }}"
+  vars:
+    params:
+      files:
+        - "{{ansible_distribution|lower|replace(' ', '_')}}.yml"
+        - "{{ansible_os_platform|lower|replace(' ', '_')}}.yml"
+      paths:
+        - "vars"
+
 - name: install texlive
   become: true
   package:
-    name:
-      - texlive
-      - texlive-latex-extra
-      - texlive-xetex
+    name: "{{ packages }}"
     state: present
-
-- name: find
-  find:
-    paths: "{{ role_path + '/files/doom' }}"
-    depth: 1
-    file_type: any
-  register: emacs_role_files
 
 - name: Symlink config
   file:

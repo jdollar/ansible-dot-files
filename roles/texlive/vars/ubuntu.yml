@@ -1,0 +1,5 @@
+---
+packages:
+  - texlive
+  - texlive-latex-extra
+  - texlive-xetex
