@@ -1,0 +1,66 @@
+version: "2"
+run:
+  build-tags:
+    - testing
+    - generator
+  modules-download-mode: readonly
+linters:
+  default: all
+  disable:
+    - wsl
+    - depguard
+    - exhaustruct
+    - lll
+    - mnd
+    - tagalign
+  settings:
+    exhaustive:
+      default-signifies-exhaustive: true
+    nlreturn:
+      block-size: 2
+    revive:
+      confidence: 0.1
+      enable-all-rules: true
+      rules:
+        - name: line-length-limit
+          disabled: true
+    varnamelen:
+      ignore-decls:
+        - cl *kgo.Client
+        - cl *kadm.Client
+        - db *sqlx.DB
+        - i int
+        - cp config.ConfigProvider
+    wsl_v5:
+      allow-first-in-block: true
+      allow-whole-block: false
+      branch-max-lines: 2
+      disable:
+        - decl
+  exclusions:
+    generated: lax
+    presets:
+      - comments
+      - common-false-positives
+      - legacy
+      - std-error-handling
+    rules:
+      - linters:
+          - err113
+        path: _test\.go
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
+formatters:
+  enable:
+    - gci
+    - gofmt
+    - gofumpt
+    - goimports
+  exclusions:
+    generated: lax
+    paths:
+      - third_party$
+      - builtin$
+      - examples$

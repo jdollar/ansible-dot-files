@@ -5,4 +5,6 @@ export ASDF_DATA_DIR=$HOME/.asdf
 export ASDF_GOLANG_MOD_VERSION_ENABLED=true
 export PATH=$ASDF_DATA_DIR/bin:$PATH
 export PATH=$ASDF_DATA_DIR/shims:$PATH
-source ~/.asdf/plugins/java/set-java-home.zsh
+export PATH=~/.local/bin:$PATH
+source ${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang/set-env.zsh
+#source ${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/java/set-java-home.zsh

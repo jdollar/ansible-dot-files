@@ -1,6 +1,6 @@
 -- file explorer
 return {
-  'scrooloose/nerdtree',
+  'preservim/nerdtree',
   config = function()
     -- display one line menu because of padding bug in new version
     vim.g.NERDTreeMinimalMenu = 1

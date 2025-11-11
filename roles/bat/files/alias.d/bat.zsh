@@ -1,3 +1,3 @@
 #!/usr/bin/env zsh
 
-alias cat="batcat --paging=never"
+alias cat="bat --paging=never"

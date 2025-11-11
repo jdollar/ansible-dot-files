@@ -7,8 +7,8 @@ for file in $HOME/.config/zsh/alias.d/**/*(Nx); do source $file; done
 for file in $HOME/.config/zsh/zshrc.d/**/*(Nx); do source $file; done
 for file in $HOME/.config/zsh/env.d/**/*(Nx); do source $file; done
 
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
+#export VOLTA_HOME="$HOME/.volta"
+#export PATH="$VOLTA_HOME/bin:$PATH"
 
 for file in $HOME/.config/zsh/plugins.d/**/*(Nx); do source $file; done
 
@@ -39,4 +39,4 @@ export PATH="/usr/local/opt/php@7.4/sbin:$PATH"
 
 eval "$(starship init zsh)"
 
-. "$HOME/.local/bin/env"
+#. "$HOME/.local/bin/env"
