@@ -18,6 +18,8 @@ return {
       bashls = {},
       -- Dockerfiles
       dockerls = {},
+      -- C/C++
+      clangd = {},
       -- eslint
       eslint = {},
       -- Golang
