@@ -39,6 +39,7 @@ return {
       "ini",
       "jinja",
       "jinja_inline",
+      "java",
       "jq",
       "javascript",
       "jsdoc",
