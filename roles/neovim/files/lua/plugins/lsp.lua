@@ -93,7 +93,7 @@ return {
       yamlls = {
         settings = {
           ['yaml'] = {
-            schemaStore = { enable = false, url = "" },
+            schemaStore = { enable = true, url = "https://www.schemastore.org/api/json/catalog.json" },
             validate = { enable = true },
           },
         }
