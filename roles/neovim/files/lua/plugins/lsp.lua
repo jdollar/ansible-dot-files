@@ -23,18 +23,18 @@ return {
       -- eslint
       eslint = {},
       -- Golang
-      golangci_lint_ls = {
-        root_markers = {
-          '.golangci.yml',
-          '.golangci.yaml',
-          '.golangci-lint.yaml',
-          '.golangci-lint.yml',
-          'go.mod',
-        },
-        init_options = {
-          command = { "golangci-lint", "run", "--output.json.path", "stdout", "--show-stats=false", "--issues-exit-code=1" }
-        }
-      },
+      --golangci_lint_ls = {
+      --  root_markers = {
+      --    '.golangci.yml',
+      --    '.golangci.yaml',
+      --    '.golangci-lint.yaml',
+      --    '.golangci-lint.yml',
+      --    'go.mod',
+      --  },
+      --  init_options = {
+      --    command = { "golangci-lint", "run", "--output.json.path", "stdout", "--show-stats=false", "--issues-exit-code=1" }
+      --  }
+      --},
       gopls = {
         settings = {
           ['gopls'] = {
@@ -64,7 +64,14 @@ return {
       -- Java
       jdtls = {},
       -- Python
-      pyright = {},
+      pyright = {
+        settings = {
+          ['pyright'] = {
+            venvPath = ".",
+            venv = ".venv"
+          }
+        }
+      },
       -- Rust
       rust_analyzer = {},
       -- Lua
@@ -149,31 +156,31 @@ return {
       callback = function(ev)
         local client = vim.lsp.get_client_by_id(ev.data.client_id)
 
-        if server == 'yamlls' then
+        if client.name == 'yamlls' then
           -- Disable yamlls processing for helm files
-          if vim.bo[bufnr].buftype ~= "" or vim.bo[bufnr].filetype == "helm" then
+          if vim.bo[ev.buf].buftype ~= "" or vim.bo[ev.buf].filetype == "helm" then
             vim.diagnostic.disable()
           end
         end
 
-        if server == "ts_ls" then
+        if client.name == "ts_ls" then
           client.server_capabilities.documentFormattingProvider = false
         end
 
-        if server == "intelephense" then
+        if client.name == "intelephense" then
           client.server_capabilities.documentFormattingProvider = false
         end
 
-        if server == "eslint" then
+        if client.name == "eslint" then
           client.server_capabilities.documentFormattingProvider = false
 
           vim.api.nvim_create_autocmd("BufWritePre", {
-            buffer = bufnr,
+            buffer = ev.buf,
             command = "EslintFixAll",
           })
         end
 
-        if not server == "clangd" then
+        if not client.name == "clangd" then
           if not client:supports_method('textDocument/willSaveWaitUntil') and client:supports_method('textDocument/formatting') then
             vim.api.nvim_create_autocmd('BufWritePre', {
               buffer = ev.buf,
@@ -183,6 +190,27 @@ return {
             })
           end
         end
+
+        if client.name == "gopls" then
+          vim.api.nvim_create_autocmd("BufWritePre", {
+            buffer = ev.buf,
+            callback = function()
+              local original = vim.notify
+              vim.notify = function(msg, level, opts)
+                if msg == 'No code actions available' then
+                  return
+                end
+
+                original(msg, level, opts)
+              end
+
+              vim.lsp.buf.format()
+              vim.lsp.buf.code_action { context = { only = { 'source.organizeImports' } }, apply = true }
+              vim.lsp.buf.code_action { context = { only = { 'source.fixAll' } }, apply = true }
+            end,
+          })
+        end
+
 
         on_attach(client, ev.buf)
       end,
