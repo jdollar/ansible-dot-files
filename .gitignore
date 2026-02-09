@@ -2,3 +2,4 @@
 **/*.generated
 **/*.private.*
 venv/
+password-file

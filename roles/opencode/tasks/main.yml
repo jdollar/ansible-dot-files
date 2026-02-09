@@ -1,0 +1,49 @@
+---
+- name: Register a variable, ignore errors and continue
+  ansible.builtin.command: opencode -v
+  register: has_opencode
+  ignore_errors: true
+
+- name: Run only if the task that registered the "result" variable fails
+  get_url:
+    url: https://opencode.ai/install
+    dest: /tmp/opencode-installer.sh
+    mode: 'u+rwx'
+  when: has_opencode is failed
+  register: download
+
+- name: Run the install script
+  become: true
+  shell: /tmp/opencode-installer.sh --no-modify-path
+  when: download.changed
+
+- name: Remove the opencode-installer.sh
+  file:
+    path: /tmp/opencode-installer.sh
+    state: absent
+
+- name: Create config directory
+  file:
+    path: "{{ opencode_config_dir }}"
+    state: directory
+
+- name: Symlink config
+  file:
+    src: "{{ role_path + '/files/' + item }}"
+    dest: "{{ opencode_config_dir }}/{{ item }}"
+    state: link
+  loop:
+    - "skills"
+    - "opencode.jsonc"
+    - "AGENTS.md"
+
+- include_tasks:
+    file: roles/common/tasks/zsh-file-symlink.yml
+
+- name: Ensure Context 7 API key is present in config file
+  ansible.builtin.lineinfile:
+    create: true
+    mode: 'u+rwx'
+    path: "~/.config/zsh/env.d/opencode.private.zsh"
+    line: "export CONTEXT7_API_KEY={{ context7_apikey }}"
+

@@ -22,4 +22,5 @@
     - { role: "pulumi", tags: "pulumi" }
     - { role: "k9s", tags: "k9s" }
     - { role: "texlive", tags: "texlive" }
+    - { role: "opencode", tags: "opencode" }
       #    - {role: 'i3', tags: 'i3'}

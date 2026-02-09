@@ -1,0 +1,22 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "default_agent": "plan",
+  "theme": "everforest",
+  "model": "openai/gpt-5.3-codex",
+  "formatter": {
+    "gofumpt": {
+      "command": ["[ -x gofumpt ]", "&&", "gofumpt", "-w", "$FILE"],
+      "extensions": [".go"]
+    },
+    "gofmt": {
+      "command": ["[ ! -x gofumpt ]", "&&", "gofmt", "-w", "$FILE"],
+    }
+  },
+  "mcp": {
+     "context7": {
+      "type": "local",
+      "command": ["npx", "-y", "@upstash/context7-mcp", "--api-key", "{env:CONTEXT7_API_KEY}"],
+      "enabled": true
+    }
+  }
+}
