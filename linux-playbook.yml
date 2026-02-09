@@ -23,4 +23,5 @@
     - { role: "k9s", tags: "k9s" }
     - { role: "texlive", tags: "texlive" }
     - { role: "opencode", tags: "opencode" }
+    - { role: "zotero", tags: "zotero" }
       #    - {role: 'i3', tags: 'i3'}

@@ -1,0 +1,27 @@
+---
+- name: check if already installed
+  stat:
+    path: "/opt/zotero"
+  register: already_installed
+
+- name: Download zotero
+  get_url:
+    url: "https://www.zotero.org/download/client/dl?channel=release&platform=linux-x86_64"
+    dest: "/tmp/zotero-linux.tar.gz"
+  when: not already_installed.stat.exists
+
+- name: Install zotero
+  become: true
+  ansible.builtin.shell: |
+    tar xf /tmp/zotero-linux.tar.gz -C /tmp
+    cp -r /tmp/Zotero_linux-x86_64 /opt/zotero
+    /opt/zotero/set_launcher_icon
+  when: not already_installed.stat.exists
+
+- name: link zotero desktop file
+  file:
+    src: /opt/zotero/zotero.desktop
+    dest: ~/.local/share/applications/zotero.desktop
+    state: link
+  when: not already_installed.stat.exists
+
