@@ -1,12 +1,20 @@
 ---
+- name: Check if starship already installed
+  stat:
+    path: "/usr/local/bin/starship"
+  register: already_installed
+
 - name: Pull starship install script
   get_url:
     url: https://starship.rs/install.sh
     dest: /tmp/starship-install.sh
-  become: true
+    mode: '0755'
+  when: not already_installed.stat.exists
 
 - name: install starship
+  become: true
   shell: /bin/sh /tmp/starship-install.sh -y
+  when: not already_installed.stat.exists
 
 # Not yet available. Use installer script until ubuntu 25
 #- name: install zsh

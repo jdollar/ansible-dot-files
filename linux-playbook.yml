@@ -3,6 +3,18 @@
   vars:
     ansible_os_platform: "linux"
     become_to_install: "true"
+    ansible_become_method: "sudo"
+  vars_prompt:
+    - name: ansible_become_pass
+  pre_tasks:
+    - ansible.builtin.include_vars: secrets.enc
+      tags: [always]
+    - ansible.builtin.package_facts:
+        manager: auto
+      tags: [always]
+    - set_fact:
+        ansible_become_exe: "{{ 'sudo.ws' if ansible_facts.packages['sudo-rs'] is defined else 'sudo' }}"
+      tags: [always]
   roles:
     - { role: "zsh", tags: "zsh" }
     - { role: "age", tags: "age" }
