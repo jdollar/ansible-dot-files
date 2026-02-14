@@ -1,0 +1,48 @@
+---
+- name: Register a variable, ignore errors and continue
+  ansible.builtin.command: argocd version
+  register: has_argocd
+  ignore_errors: true
+
+- name: download argocd cli and install
+  when: has_argocd is failed
+  block:
+    - name: get argocd cli binary
+      get_url:
+        url: https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
+        dest: /tmp/argocd-linux-amd64
+      register: download
+
+    - name: install binary to local path
+      become: true
+      shell: install -m 555 /tmp/argocd-linux-amd64 /usr/local/bin/argocd
+      when: download.changed
+
+    - name: remove argocd script
+      file:
+        path: /tmp/argocd-linux-amd64
+        state: absent
+
+- name: Register a variable, ignore errors and continue
+  ansible.builtin.command: argonaut --version
+  register: has_argonaut
+  ignore_errors: true
+
+- name: download argonaut and install
+  when: has_argonaut is failed
+  block:
+    - get_url:
+        url: https://raw.githubusercontent.com/darksworm/argonaut/main/install.sh
+        dest: /tmp/argonaut-installer.sh
+        mode: 'u+rwx'
+      register: download
+
+    - name: Run the install script
+      become: true
+      shell: /tmp/argonaut-installer.sh
+      when: download.changed
+
+    - name: remove argonaut script
+      file:
+        path: /tmp/argonaut-installer.sh
+        state: absent
