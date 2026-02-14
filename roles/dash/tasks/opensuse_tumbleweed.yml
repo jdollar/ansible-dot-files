@@ -1,0 +1,10 @@
+---
+- name: Add gh-dash repository
+  become: "{{ become_to_install }}"
+  community.general.zypper_repository:
+    auto_import_keys: true
+    disable_gpg_check: true
+    name: gh-cli
+    repo: 'https://cli.github.com/packages/rpm'
+    state: present
+    runrefresh: true

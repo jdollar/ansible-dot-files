@@ -1,0 +1,28 @@
+---
+- import_tasks: debian.yml
+  when: ansible_facts['distribution'] == 'Debian'
+
+- import_tasks: opensuse_tumbleweed.yml
+  when: ansible_facts['distribution'] == 'openSUSE Tumbleweed'
+
+- name: install gh cli
+  become: true
+  package:
+    name: "gh"
+    state: present
+
+- name: Ensure GH_TOKEN is present in config file
+  ansible.builtin.lineinfile:
+    create: true
+    mode: 'u+rwx'
+    path: "~/.config/zsh/env.d/github.private.zsh"
+    line: "export GH_TOKEN={{ gh_token }}"
+
+- name: Update envs
+  shell: source ~/.zshrc
+  args:
+    executable: /bin/zsh
+
+- name: install gh-dash extension
+  shell: gh extension install dlvhdr/gh-dash
+

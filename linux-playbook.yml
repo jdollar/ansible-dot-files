@@ -7,6 +7,9 @@
   vars_prompt:
     - name: ansible_become_pass
   pre_tasks:
+    - name: Install ansible galaxy collections
+      ansible.builtin.shell: ansible-galaxy collection install -r requirements.yml
+      tags: [always]
     - ansible.builtin.include_vars: secrets.enc
       tags: [always]
     - ansible.builtin.package_facts:
@@ -19,6 +22,7 @@
     - { role: "zsh", tags: "zsh" }
     - { role: "age", tags: "age" }
     - { role: "gpg", tags: "gpg" }
+    - { role: "dash", tags: "dash" }
     - { role: "git", tags: "git" }
     - { role: "fd", tags: "fd" }
     - { role: "fzf", tags: "fzf" }
