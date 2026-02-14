@@ -13,7 +13,8 @@
   },
   "asdf": {
     "managerFilePatterns": [
-      "/(^|/)[.]tool-versions$/"
+      "**/tool-versions",
+      "**/.tool-versions"
     ]
   },
   "packageRules": [
