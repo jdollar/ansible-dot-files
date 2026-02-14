@@ -11,7 +11,11 @@
     "enabled": true,
     "automerge": true
   },
-  "asdf": {},
+  "asdf": {
+    "managerFilePatterns": [
+      "**/[\\.]tool-versions$"
+    ]
+  },
   "packageRules": [
     {
       "matchUpdateTypes": [
