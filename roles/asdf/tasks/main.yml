@@ -59,6 +59,7 @@
     patterns:
       - asdfrc
       - tool-versions
+      - plugin-versions
     depth: 1
     file_type: any
   register: asdf_role_files
@@ -79,30 +80,17 @@
 - include_tasks:
     file: roles/common/tasks/zsh-file-symlink.yml
 
-- name: install asdf plugins
-  shell: "source ~/.zshrc && asdf plugin add {{ item.name }} {{ item.git }}"
+- name: install asdf plugin manager
+  shell: "source ~/.zshrc && asdf plugin add asdf-plugin-manager https://github.com/asdf-community/asdf-plugin-manager.git"
   register: result
   failed_when: result.rc != 0 and item.name not in result.stderr and "already added" not in result.stderr
   args:
     executable: /bin/zsh
-  loop:
-    - { name: "java", git: "https://github.com/halcyon/asdf-java.git" }
-    - { name: "nodejs", git: "https://github.com/asdf-vm/asdf-nodejs.git" }
-    - { name: "golang", git: "https://github.com/kennyp/asdf-golang.git" }
-    - { name: "ruby", git: "https://github.com/asdf-vm/asdf-ruby.git" }
-    - { name: "python", git: "https://github.com/danhper/asdf-python" }
-    - { name: "rust", git: "https://github.com/asdf-community/asdf-rust.git" }
-    - { name: "php", git: "https://github.com/asdf-community/asdf-php.git" }
-    - {
-        name: "kubectl",
-        git: "https://github.com/asdf-community/asdf-kubectl.git",
-      }
-    - { name: "helm", git: "https://github.com/Antiarchitect/asdf-helm.git" }
-    - { name: "maven", git: "https://github.com/halcyon/asdf-maven" }
-    - {
-        name: "skaffold",
-        git: "https://github.com/virtualstaticvoid/asdf-skaffold.git",
-      }
+
+- name: install globally defined plugin manager
+  shell: source ~/.zshrc && asdf install asdf-plugin-manager && asdf-plugin-manager add-all
+  args:
+    executable: /bin/zsh
 
 - name: install globally defined tool versions
   shell: source ~/.zshrc && asdf install

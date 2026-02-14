@@ -1,0 +1,12 @@
+asdf-plugin-manager https://github.com/asdf-community/asdf-plugin-manager.git f1cc7390168e10e2f7ebc044293957fe72009d5b
+golang https://github.com/asdf-community/asdf-golang 7cec9181a9b7871b5c213dc4a806080ac90b9bb7
+helm https://github.com/Antiarchitect/asdf-helm.git a39e17b098523b3840c359055192751ae835f835
+java https://github.com/halcyon/asdf-java.git 3acda979870eb24e5b5817b8226cf7a4ca1184ef
+kubectl https://github.com/asdf-community/asdf-kubectl.git cbe6df49865a52ad5e6e430dff33f474785ff2bf
+maven https://github.com/halcyon/asdf-maven 674e23a8e239147ccf835252a41459c72f497c94
+nodejs https://github.com/asdf-vm/asdf-nodejs.git 4f8aa3d9ebeb626c6905f6456c5ded13b06b59ab
+php https://github.com/asdf-community/asdf-php.git 52c669a77f08ec81caff47d560476d2ba1b176b9
+python https://github.com/asdf-community/asdf-python 32a48fd63787226ea3e6db7feb6a26257e4402ca
+ruby https://github.com/asdf-vm/asdf-ruby.git 8cb9721f85ff54d71462e50d1a7106328dd3e460
+rust https://github.com/asdf-community/asdf-rust.git 843601293ec23fd294da8d6d5ecff9bc94832c17
+skaffold https://github.com/virtualstaticvoid/asdf-skaffold.git c0172b7f4eb0c8e7638ebdf35919c09340c0b94b
