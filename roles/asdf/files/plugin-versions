@@ -11,3 +11,5 @@ ruby https://github.com/asdf-vm/asdf-ruby.git 1c6a957af861eaf5ac905ea1529401577b
 rust https://github.com/asdf-community/asdf-rust.git 843601293ec23fd294da8d6d5ecff9bc94832c17
 skaffold https://github.com/virtualstaticvoid/asdf-skaffold.git c0172b7f4eb0c8e7638ebdf35919c09340c0b94b
 awscliv2 git@github.com:jdollar/asdf-awscliv2.git 9a4e6493b23be7199e2f57793483d9023684423c
+pulumi https://github.com/canha/asdf-pulumi.git 99d675b5e5ed50fd722b7a939e553c9802356767
+terraform https://github.com/asdf-community/asdf-hashicorp.git d2557f97752761eecb50f63cd31b64c236d23089
