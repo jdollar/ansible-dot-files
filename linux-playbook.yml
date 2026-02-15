@@ -22,6 +22,7 @@
     - { role: "zsh", tags: "zsh" }
     - { role: "age", tags: "age" }
     - { role: "gpg", tags: "gpg" }
+    - { role: "taws", tags: "taws" }
     - { role: "argonaut", tags: "argonaut" }
     - { role: "dash", tags: "dash" }
     - { role: "git", tags: "git" }

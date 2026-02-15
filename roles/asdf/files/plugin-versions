@@ -10,3 +10,4 @@ python https://github.com/asdf-community/asdf-python 32a48fd63787226ea3e6db7feb6
 ruby https://github.com/asdf-vm/asdf-ruby.git 1c6a957af861eaf5ac905ea1529401577b11fec3
 rust https://github.com/asdf-community/asdf-rust.git 843601293ec23fd294da8d6d5ecff9bc94832c17
 skaffold https://github.com/virtualstaticvoid/asdf-skaffold.git c0172b7f4eb0c8e7638ebdf35919c09340c0b94b
+awscliv2 git@github.com:jdollar/asdf-awscliv2.git 9a4e6493b23be7199e2f57793483d9023684423c
