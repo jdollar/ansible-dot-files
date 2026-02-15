@@ -89,10 +89,6 @@
 
 - name: install globally defined plugin manager
   shell: source ~/.zshrc && asdf install asdf-plugin-manager && asdf-plugin-manager add-all
-  args:
-    executable: /bin/zsh
-
-- name: install globally defined tool versions
-  shell: source ~/.zshrc && asdf install
+  notify: "asdf : global asdf install"
   args:
     executable: /bin/zsh

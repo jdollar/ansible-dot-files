@@ -1,0 +1,6 @@
+---
+- name: install globally defined tool versions
+  shell: source ~/.zshrc && asdf install
+  listen: "asdf : global asdf install"
+  args:
+    executable: /bin/zsh

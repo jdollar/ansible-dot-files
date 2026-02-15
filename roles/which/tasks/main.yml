@@ -1,6 +1,4 @@
 ---
-- name: test
-  debug: var=ansible_distribution
 - name: Setup which task for OS
   ansible.builtin.include_vars: "{{ lookup('ansible.builtin.first_found', params) }}"
   vars:
