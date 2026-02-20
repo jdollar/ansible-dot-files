@@ -42,24 +42,26 @@
     mkdir -p /home/jdollar/.asdf/bin
     cp /tmp/asdf /home/jdollar/.asdf/bin/asdf
 
-- name: create zshrc.d directory if it doesn't exist
-  ansible.builtin.file:
-    path: ~/.config/zsh/zshrc.d
-    state: directory
-
-- name: generate plugin file
+- name: generate template files
   ansible.builtin.template:
-    src: "{{ role_path }}/files/asdf.j2"
-    dest: "{{ zshrc_dir }}/asdf.zsh"
-    mode: u=rx
+    src: "{{ role_path }}/files/{{ item.name }}.j2"
+    dest: "{{ role_path }}/files/{{ item.destination }}/{{ item.name }}.generated"
+    #dest: "{{ zshrc_dir }}/asdf.zsh"
+    mode: "{{ 'u=rx' if '.zsh' in item.name else 'u=rw' }}"
+  loop:
+    - name: asdf.zsh
+      destination: zshrc.d
+    - name: gradle.properties
+      destination: .
 
-- name: find asdfrc
+- name: find asdf config files
   find:
     paths: "{{ role_path + '/files' }}"
     patterns:
       - asdfrc
       - tool-versions
       - plugin-versions
+      - default-golang-pkgs
     depth: 1
     file_type: any
   register: asdf_role_files
@@ -71,14 +73,21 @@
     state: link
   loop: "{{ asdf_role_files.files }}"
 
-- name: Symlink default go packages config
+- name: Symlink gradle.properties
   file:
-    src: "{{ role_path + '/files/default-golang-pkgs' }}"
-    dest: "~/.default-golang-pkgs"
+    src: "{{ role_path + '/files/gradle.properties.generated' }}"
+    dest: "~/gradle.properties"
     state: link
 
 - include_tasks:
     file: roles/common/tasks/zsh-file-symlink.yml
+
+- name: configure homelab goproxy
+  ansible.builtin.lineinfile:
+    create: true
+    mode: 'u+rwx'
+    path: "~/.config/zsh/env.d/asdf-go.private.zsh"
+    line: "export GOPROXY=https://{{ homelab_nexus_url }}/repository/goproxy/,direct"
 
 - name: install asdf plugin manager
   shell: "source ~/.zshrc && asdf plugin add asdf-plugin-manager https://github.com/asdf-community/asdf-plugin-manager.git"

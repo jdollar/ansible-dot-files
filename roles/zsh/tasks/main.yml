@@ -24,6 +24,12 @@
 - include_tasks:
     file: roles/common/tasks/zsh-file-symlink.yml
 
+- name: Create netrc
+  ansible.builtin.template:
+    src: "{{ role_path }}/files/netrc.j2"
+    dest: "{{ role_path }}/files/netrc.generated"
+    mode: 0o600
+
 - name: find role home files
   find:
     paths: "{{ role_path + '/files' }}"
@@ -33,6 +39,7 @@
       - zlogin
       - zshenv
       - p10k.zsh
+      - netrc.generated
     depth: 1
     file_type: file
   register: zsh_role_home_files
@@ -40,7 +47,7 @@
 - name: Symlink home files
   file:
     src: "{{ item.path }}"
-    dest: "~/.{{ item.path.split('/')[-1] }}"
+    dest: "~/.{{ item.path.split('/')[-1] | regex_replace('.generated', '') }}"
     state: link
   loop: "{{ zsh_role_home_files.files }}"
 

@@ -15,7 +15,7 @@
 - name: Symlink zsh config scripts
   file:
     src: "{{ item.path }}"
-    dest: "~/.config/zsh/{{ item.path.split('/')[-2] }}/{{ item.path.split('/')[-1] }}"
+    dest: "~/.config/zsh/{{ item.path.split('/')[-2] }}/{{ item.path.split('/')[-1].removesuffix('.generated') }}"
     state: link
-  loop: "{{ config_files.results | map(attribute='files') | list | flatten(levels=1) }}"
+  loop: "{{ config_files.results | map(attribute='files') | list | flatten(levels=1) | select('ne', '.gitkeep') }}"
 

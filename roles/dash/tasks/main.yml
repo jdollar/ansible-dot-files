@@ -18,13 +18,10 @@
     path: "~/.config/zsh/env.d/github.private.zsh"
     line: "export GH_TOKEN={{ gh_token }}"
 
-- name: Update envs
-  shell: source ~/.zshrc
+- name: install gh-dash extension
+  shell: source ~/.zshrc && gh extension install dlvhdr/gh-dash
   args:
     executable: /bin/zsh
-
-- name: install gh-dash extension
-  shell: gh extension install dlvhdr/gh-dash
 
 - name: find config files
   find:
