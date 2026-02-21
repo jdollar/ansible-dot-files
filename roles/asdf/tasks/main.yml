@@ -46,7 +46,6 @@
   ansible.builtin.template:
     src: "{{ role_path }}/files/{{ item.name }}.j2"
     dest: "{{ role_path }}/files/{{ item.destination }}/{{ item.name }}.generated"
-    #dest: "{{ zshrc_dir }}/asdf.zsh"
     mode: "{{ 'u=rx' if '.zsh' in item.name else 'u=rw' }}"
   loop:
     - name: asdf.zsh
@@ -61,7 +60,7 @@
       - asdfrc
       - tool-versions
       - plugin-versions
-      - default-golang-pkgs
+      - default-*-pkgs
     depth: 1
     file_type: any
   register: asdf_role_files
