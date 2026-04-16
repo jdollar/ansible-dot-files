@@ -3,7 +3,7 @@ golang 1.26.2
 nodejs 24.15.0
 python 3.14.4
 ruby 4.0.2
-rust 1.94.1
+rust 1.95.0
 kubectl 1.35.4
 helm 4.1.4
 terraform 1.14.8
