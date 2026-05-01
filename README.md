@@ -1,3 +1,7 @@
+# ARCHIVE NOTE
+
+This repository has been moved to codeberg: https://codeberg.org/jdollar/ansible-dot-files
+
 ## Ansible Local Environment Setup
 
 Ansible installation:
